@@ -2,3 +2,36 @@
     width: 100vw;
     height: 100px;
 }
+.ksiazki{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.ksiazka{
+    width: 30%;
+    height: 400px;
+    margin-top: 10px;
+    border: solid black;
+    text-align: center;
+    flex: 1 0 17%;
+    margin: 0 1% 1% 1%;
+    padding: 10px;
+}
+
+.ksiazka h4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+.kategoria {
+    text-align: center;
+    background-color: orange;
+    margin: 10px;
+    width: 99vw;
+    height: 7vh;
+}

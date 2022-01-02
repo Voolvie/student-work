@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
 import { Card, Container, Form, Button } from "react-bootstrap";
-import { db } from "../../firebase";
+import app, { db, storage } from "../../firebase";
 import { useHistory, Link, Redirect } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
@@ -14,17 +14,36 @@ const AddBook = () => {
     const [language, setLanguage] = useState('')
     const [price, setPrice] = useState('')
     const [bookID, setBookID] = useState('')
+    const [fileUrl, setFileUrl] = useState(null) 
 
     const { currentUser } = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
+    const onFileChange = async (e) => {
+        const file = e.target.files[0]
+        const storageRef = app.storage().ref()
+        const fileRef = storageRef.child(file.name)
+        await fileRef.put(file)
+        setFileUrl(await fileRef.getDownloadURL())
+        }
 
-    function handleSubmit (e) {
+    // useEffect(() => {
+    //     if(!file){
+    //         return
+    //     }
+    //     const fileReader = new FileReader()
+    //     fileReader.onload = () => {
+    //         setpreviewUrl(fileReader.result)
+    //     }
+    //     fileReader.readAsDataURL(file)
+    // }, [file])
+
+     function handleSubmit (e) {
         e.preventDefault()
 
-        if(title === "" || author === "" || publish === "" || category === "" || language === "" || price === "" || bookID === "" ) {
+        if(title === "" || author === "" || publish === "" || category === "" || language === "" || price === "" || bookID === "" || fileUrl === null) {
             alert('Uzupełnij wszystko')
         } else {
                 setLoading(true)
@@ -36,7 +55,8 @@ const AddBook = () => {
                 category: category,
                 language: language,
                 price: price,
-                bookID: bookID
+                bookID: bookID,
+                image: fileUrl
             }).then(()=> {
                 setTitle('')
                 setAuthor('')
@@ -95,6 +115,10 @@ const AddBook = () => {
                             <Form.Group className="mb-3">
                                 <Form.Label>ID książki</Form.Label>
                                 <Form.Control type="text"  onChange={(e) => setBookID(e.target.value)}  required />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Zdjecie ksiazki</Form.Label>
+                                <Form.Control type="file"  onChange={onFileChange} />
                             </Form.Group>
                             <Button disabled={loading} className="w-100 " type="submit">Update</Button>
                         </Form>
