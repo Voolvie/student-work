@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext } from "../../context/CategoryContext";
 
+// TRZEBA WYMYSLIC HREFA DO KATEGORII BO NIE DZIALA Z INNYCH NAVBAROW
+
 const NavbarAdmin = () => {
     const [error, setError] = useState('')
     const { currentUser, logout} = useAuth()
@@ -34,6 +36,7 @@ const NavbarAdmin = () => {
                         >
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/add-book">AddBook</Nav.Link>
+                            <Nav.Link href="/requests">Requests</Nav.Link>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>

@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { Button, Container, FormControl, Nav, Navbar, NavDropdown, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { CategoryContext } from "../../context/CategoryContext";
 
 const NavbarUser = () => {
     const [error, setError] = useState('')
     const { currentUser, logout } = useAuth()
     const history = useHistory()
+    const [category, setCategory] = useContext(CategoryContext)
+
 
      async function handleLogout() {
         setError('')
@@ -22,7 +25,7 @@ const NavbarUser = () => {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar Scroll</Navbar.Brand>
+                    <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -30,8 +33,14 @@ const NavbarUser = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                         >
-                            <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/update-profile">Login</Nav.Link>
+                            <Nav.Link href="/">Books</Nav.Link>
+                            <Nav.Link href="/my-books">My Books</Nav.Link>
+                            <NavDropdown title="Kategorie" id="navbarScrollingDropdown">
+                                <NavDropdown.Item  onClick={() => setCategory("x")}>x</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Powieść zagraniczna")}>Powieść zagraniczna</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={() => setCategory("")}>Bez</NavDropdown.Item>
+                            </NavDropdown>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
@@ -40,6 +49,8 @@ const NavbarUser = () => {
                             </NavDropdown>
                             <Button variant="link" onClick={handleLogout}>Log out</Button>
                         </Nav>
+
+                        <Nav.Link href="/cart">Koszyk</Nav.Link>
                         <Form className="d-flex">
                             <FormControl
                                 type="search"

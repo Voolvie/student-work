@@ -11,6 +11,9 @@ import  ForgotPassword  from "./Auth/ForgotPassword"
 import  PrivateRoute  from "./Auth/PrivateRoute";
 import  UpdateProfile  from "./UpdateProfile"
 import AddBook from "./Books/AddBook";
+import Cart from "./Books/Cart";
+import MyBooks from "./Books/MyBooks";
+import Requests from "./Books/Requests";
 import { Test } from "./Test"
 import { CategoryProvider } from "../context/CategoryContext";
 
@@ -27,6 +30,9 @@ const App = () => {
                 <PrivateRoute path='/profile'component={Profile}/>
                 <PrivateRoute path='/update-profile' component={UpdateProfile}/>
                 <PrivateRoute path='/add-book' component={AddBook} />
+                <PrivateRoute path='/cart' component={Cart} />
+                <PrivateRoute path='/my-books' component={MyBooks} />
+                <PrivateRoute path='/requests' component={Requests} />
                 <Route path='/signup' component={Signup}/>
                 <Route path='/login' component={Login}/>
                 <Route path='/forgot-password' component={ForgotPassword}/>

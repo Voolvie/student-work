@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import "../style.css"
 import { useAuth } from "../../context/AuthContext";
-import { CategoryContext, useCategory } from "../../context/CategoryContext";
+import { CategoryContext} from "../../context/CategoryContext";
 
 
 const Books = (props) => {
@@ -35,6 +35,19 @@ const Books = (props) => {
     }, [category])
 
 
+    {/* <button onClick={(e) => showBook(book, e)}>Wypożycz</button> */}
+    const addToCart = ({title, author, bookID}) => {
+        db.collection('cart').doc(currentUser.email + ' ' + title).set({
+                title: title,
+                author: author,
+                bookID: bookID,
+                userID: currentUser.uid,
+                userEmail: currentUser.email
+            })
+        console.log(currentUser.uid, currentUser.displayName, title, author, bookID)
+    }
+
+
     return (
     <div>
         <div className="kategoria">
@@ -62,6 +75,7 @@ const Books = (props) => {
                                     <button>wypożycz</button>
                                 </div>
                             } */}
+                            <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
                         </div>
                     </div>
                     
