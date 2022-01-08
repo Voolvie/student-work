@@ -24,6 +24,7 @@ const Cart = () => {
 
     const makeRequest = () => {
         const booksCollectionRef = db.collection('cart').where("userID", "==", currentUser.uid)
+
         const getCart = async () => {
         const data = await getDocs(booksCollectionRef)
         setCart(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
@@ -32,6 +33,7 @@ const Cart = () => {
 
         cart.map((book) => {
             db.collection('requests').doc(currentUser.email + ' ' + book.title).set({
+                image: book.image,
                 userEmail: book.userEmail,
                 title: book.title,
                 author: book.author,
@@ -44,6 +46,8 @@ const Cart = () => {
                 doc.ref.delete()
             })
         })
+
+        console.log(booksCollectionRef)
 
         alert('Twoja prośba o wypożyczenie została przesłana!')
         history.push('/')

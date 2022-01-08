@@ -36,8 +36,9 @@ const Books = (props) => {
 
 
     {/* <button onClick={(e) => showBook(book, e)}>Wypożycz</button> */}
-    const addToCart = ({title, author, bookID}) => {
+    const addToCart = ({title, author, bookID, image}) => {
         db.collection('cart').doc(currentUser.email + ' ' + title).set({
+                image: image,
                 title: title,
                 author: author,
                 bookID: bookID,
