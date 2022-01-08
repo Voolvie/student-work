@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import "../style.css"
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext} from "../../context/CategoryContext";
+import BookModal from "../Modals/BookModal";
 
 
 const Books = (props) => {
@@ -52,9 +52,8 @@ const Books = (props) => {
     return (
     <div>
         <div className="kategoria">
-            <h2> Kategoria: {category ? category : `Wszystko`}</h2>
+            <h4> Kategoria: {category ? category : `Wszystko`}</h4>
         </div>
-            
         <div className="ksiazki">
             {books.map((book) => {
                 return (
@@ -76,6 +75,7 @@ const Books = (props) => {
                                     <button>wypożycz</button>
                                 </div>
                             } */}
+                            <BookModal book={book} />
                             <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
                         </div>
                     </div>

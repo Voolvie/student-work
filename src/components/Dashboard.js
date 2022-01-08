@@ -12,7 +12,7 @@ export const Dashboard = () => {
     const {currentUser} = useAuth()
     return (
 
-        <div className="navbar">
+        <div className="dashboard-content">
             {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <NavbarUser />}
             <Books />
         </div>

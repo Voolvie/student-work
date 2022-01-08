@@ -23,8 +23,8 @@ const NavbarUser = () => {
     
     return (
         <div>
-            <Navbar bg="light" expand="lg">
-                <Container fluid>
+            <Navbar className="navbar">
+                <Container >
                     <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
@@ -33,9 +33,9 @@ const NavbarUser = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                         >
-                            <Nav.Link href="/">Books</Nav.Link>
-                            <Nav.Link href="/my-books">My Books</Nav.Link>
-                            <NavDropdown title="Kategorie" id="navbarScrollingDropdown">
+                            <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/my-books">My Books</Nav.Link>
+                            <NavDropdown  title="Kategorie" id="navbarScrollingDropdown">
                                 <NavDropdown.Item  onClick={() => setCategory("x")}>x</NavDropdown.Item>
                                 <NavDropdown.Item  onClick={() => setCategory("Powieść zagraniczna")}>Powieść zagraniczna</NavDropdown.Item>
                                 <NavDropdown.Divider />

@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import "../style.css"
 import { useAuth } from "../../context/AuthContext";
-import { CategoryContext} from "../../context/CategoryContext";
 import NavbarUser from "../Navbar/NavbarUser";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -31,13 +29,13 @@ const Cart = () => {
         }
         getCart()
 
-        cart.map((book) => {
-            db.collection('requests').doc(currentUser.email + ' ' + book.title).set({
-                image: book.image,
-                userEmail: book.userEmail,
-                title: book.title,
-                author: book.author,
-                bookID: book.bookID
+        cart.map(({image, userEmail, title, author, bookID}) => {
+            db.collection('requests').doc(currentUser.email + ' ' + title).set({
+                image: image,
+                userEmail: userEmail,
+                title: title,
+                author: author,
+                bookID: bookID
             })
         })
 
