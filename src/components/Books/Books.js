@@ -65,7 +65,6 @@ const Books = (props) => {
                             <h4>{book.title}</h4>
                             <h5>{book.author}</h5>
                             <p>{book.category}</p>
-                            <h5>{book.price + ' zł'}</h5>
                             {/* {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22"  ? 
                                 <div>
                                     <button>edytuj</button>

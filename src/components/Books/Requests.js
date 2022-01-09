@@ -17,7 +17,7 @@ const Requests = () => {
             setRequests(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
             }
         getRequests()
-    }, [value])
+    }, [value, requests])
 
     const rentBook = (i) => {
 
@@ -51,7 +51,13 @@ const Requests = () => {
         })
 
     }
-    
+    const dontRent = ({userEmail, title}) => {
+        const deleteFromRequest = async () => {
+            db.collection('requests').doc(userEmail + ' ' + title).delete()
+        }
+        deleteFromRequest()
+        console.log(userEmail, title)
+    }
     return (
         <div>
             <NavbarAdmin/>
@@ -65,8 +71,9 @@ const Requests = () => {
                         <div>
                             <h4>{book.title}</h4>
                             <h5>{book.userEmail}</h5>
+                            <p>{book.dane.name} {book.dane.surname}, {book.dane.street}, {book.dane.postcode} {book.dane.city}</p>
                             <button onClick={() => rentBook(i)}>Wypożycz użytkownikowi</button>
-                            <button>Nie wypożyczaj</button>
+                            <button onClick={() => dontRent(book)}>Nie wypożyczaj</button>
                         </div>
                     </div>
 

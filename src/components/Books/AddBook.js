@@ -12,7 +12,6 @@ const AddBook = () => {
     const [publish, setPublish] = useState('')
     const [category, setCategory] = useState('')
     const [language, setLanguage] = useState('')
-    const [price, setPrice] = useState('')
     const [bookID, setBookID] = useState('')
     const [fileUrl, setFileUrl] = useState(null) 
 
@@ -43,7 +42,7 @@ const AddBook = () => {
      function handleSubmit (e) {
         e.preventDefault()
 
-        if(title === "" || author === "" || publish === "" || category === "" || language === "" || price === "" || bookID === "" || fileUrl === null) {
+        if(title === "" || author === "" || publish === "" || category === "" || language === "" || bookID === "" || fileUrl === null) {
             alert('Uzupełnij wszystko')
         } else {
                 setLoading(true)
@@ -54,7 +53,6 @@ const AddBook = () => {
                 publish: publish,
                 category: category,
                 language: language,
-                price: price,
                 bookID: bookID,
                 image: fileUrl
             }).then(()=> {
@@ -63,7 +61,6 @@ const AddBook = () => {
                 setPublish('')
                 setCategory('')
                 setLanguage('')
-                setPrice('')
                 setBookID('')
                 alert('Dodano książkę!')
             }).catch((e) => {
@@ -107,10 +104,6 @@ const AddBook = () => {
                             <Form.Group className="mb-3">
                                 <Form.Label>Język</Form.Label>
                                 <Form.Control type="text"  onChange={(e) => setLanguage(e.target.value)}  required />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Cena</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setPrice(e.target.value)}  required />
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>ID książki</Form.Label>
