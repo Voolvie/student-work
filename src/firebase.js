@@ -4,24 +4,25 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 
+const config = {
 
-const app = firebase.initializeApp({
-  apiKey: "AIzaSyAqQg34sv3Luiz1DB8xkEfqu3r9nYUUG88",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 
-  authDomain: "klemczak-library.firebaseapp.com",
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
 
-  projectId: "klemczak-library",
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 
-  storageBucket: "klemczak-library.appspot.com",
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
 
-  messagingSenderId: "783224823419",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
 
-  appId: "1:783224823419:web:953095dcde25278d958cde",
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 
-  measurementId: "G-7GPH5K9Y6W"
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 
+}
 
-})
+const app = firebase.initializeApp(config)
 
 export const auth = app.auth()
 
