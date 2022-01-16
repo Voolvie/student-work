@@ -4,9 +4,9 @@ import { Button, Container, FormControl, Nav, Navbar, Form } from "react-bootstr
 const NavbarMain = () => {
     return (
         <div>
-            <Navbar bg="light" expand="lg">
-                <Container fluid>
-                    <Navbar.Brand href="#">Navbar Scroll</Navbar.Brand>
+            <Navbar className="navbar">
+                <Container >
+                    <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -14,8 +14,8 @@ const NavbarMain = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                         >
-                            <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/login">Login</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/login">Login</Nav.Link>
                         </Nav>
                         <Form className="d-flex">
                             <FormControl

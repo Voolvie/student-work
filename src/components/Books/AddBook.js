@@ -76,7 +76,7 @@ const AddBook = () => {
     
 
     return (
-        <>
+        <div className="dashboard-content">
             {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <Redirect to="/" />}
 
             <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
@@ -119,7 +119,7 @@ const AddBook = () => {
                 </Card>
             </div>
             </Container>
-        </>
+        </div>
     )
 }
 

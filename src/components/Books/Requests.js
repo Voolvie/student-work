@@ -59,7 +59,7 @@ const Requests = () => {
         console.log(userEmail, title)
     }
     return (
-        <div>
+        <div className="dashboard-content">
             <NavbarAdmin/>
             {
             requests.map((book, i) => {

@@ -24,9 +24,9 @@ const NavbarAdmin = () => {
     
     return (
         <div>
-            <Navbar bg="light" expand="lg">
+            <Navbar className="navbar">
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar Scroll</Navbar.Brand>
+                    <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -34,9 +34,9 @@ const NavbarAdmin = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                         >
-                            <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/add-book">AddBook</Nav.Link>
-                            <Nav.Link href="/requests">Requests</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/add-book">AddBook</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/requests">Requests</Nav.Link>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>

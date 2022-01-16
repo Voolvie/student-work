@@ -90,7 +90,7 @@ const UpdateProfile = () => {
     }
     
     return (
-        <>
+        <div className="dashboard-content">
         {/* <div>
             {users.length > 0 ? (
              users.map((user) =>
@@ -147,7 +147,7 @@ const UpdateProfile = () => {
             </div>
             </div>
         </Container>
-        </>
+        </div>
     )
 }
 export default UpdateProfile

@@ -20,7 +20,7 @@ const MyBooks = () => {
 
 
     return (
-        <div>
+        <div className="dashboard-content">
             <NavbarUser/>
             {
             myBooks.map((book, i) => {

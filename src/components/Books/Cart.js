@@ -73,12 +73,12 @@ const Cart = () => {
     }
 
     const calcultePrice = () => {
-        if(dni > 14) {
+        
+        if(dni > 14 && dni <  30) {
             setPrice({
                 book: cart.length * 10
             })
-        }
-        if (dni > 30) {
+        } else if (dni > 30) {
             setPrice({
                 book: cart.length * 20
             })  
@@ -135,7 +135,7 @@ const Cart = () => {
     }
 
     return (
-        <div>
+        <div className="dashboard-content">
             <NavbarUser />
             <div className="cart">
                 {cart == false ? 
