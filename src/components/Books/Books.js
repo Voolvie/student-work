@@ -35,10 +35,9 @@ const Books = (props) => {
 
     }, [category])
 
-
-    {/* <button onClick={(e) => showBook(book, e)}>Wypożycz</button> */}
     const addToCart = ({title, author, bookID, image}) => {
-        db.collection('cart').doc(currentUser.email + ' ' + title).set({
+        if (currentUser != null) {
+            db.collection('cart').doc(currentUser.email + ' ' + title).set({
                 image: image,
                 title: title,
                 author: author,
@@ -46,7 +45,10 @@ const Books = (props) => {
                 userID: currentUser.uid,
                 userEmail: currentUser.email
             })
-        console.log(currentUser.uid, currentUser.displayName, title, author, bookID)
+        } else {
+            alert('MUSISZ BYĆ ZALOGOWANY')
+        }
+        
     }
 
 

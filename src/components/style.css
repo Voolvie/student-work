@@ -26,7 +26,7 @@ color: white
     
 
 }
-.ksiazka{
+.ksiazka {
     width: 30%;
     height: 400px;
     margin-top: 10px;
@@ -37,6 +37,26 @@ color: white
     padding: 10px;
     border-style: inset;
     border-width: 0.3vw;
+    color: white;
+}
+.my-books-layout {
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    margin: 20px;
+}
+.my-books{
+    width: 30%;
+    height: 400px;
+    margin-top: 10px;
+    border: solid black;
+    text-align: center;
+    margin: 0 1% 1% 1%;
+    padding: 10px;
+    border-style: inset;
+    border-width: 0.3vw;
+    color: white;
 }
 
 .ksiazka h4 {
@@ -88,4 +108,14 @@ color: white
     border-width: 0.1vw; 
     border-bottom-style: solid;
     padding: 10px;
+    color:white;
+}
+
+.koszyk-ksiazki-2 {
+    width: 40%;
+    margin-top: 0.5vh;
+    border-width: 0.1vw; 
+    border-bottom-style: solid;
+    padding: 10px;
+    color:white;
 }

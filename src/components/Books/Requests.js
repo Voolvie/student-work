@@ -56,7 +56,6 @@ const Requests = () => {
             db.collection('requests').doc(userEmail + ' ' + title).delete()
         }
         deleteFromRequest()
-        console.log(userEmail, title)
     }
     return (
         <div className="dashboard-content">
@@ -64,7 +63,7 @@ const Requests = () => {
             {
             requests.map((book, i) => {
                 return (
-                    <div key={book.id} className="koszyk-ksiazki">
+                    <div key={book.id} className="koszyk-ksiazki-2">
                         <div>
                             <img width="140" height="150" src={book.image} alt={book.title} />
                         </div>
@@ -72,6 +71,8 @@ const Requests = () => {
                             <h4>{book.title}</h4>
                             <h5>{book.userEmail}</h5>
                             <p>{book.dane.name} {book.dane.surname}, {book.dane.street}, {book.dane.postcode} {book.dane.city}</p>
+                            <p>Start wypożycznia: {book.dane.startDate}</p>
+                            <p>Koniec wypożyczenia: {book.dane.endDate}</p>
                             <button onClick={() => rentBook(i)}>Wypożycz użytkownikowi</button>
                             <button onClick={() => dontRent(book)}>Nie wypożyczaj</button>
                         </div>

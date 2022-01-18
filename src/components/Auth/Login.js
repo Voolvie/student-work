@@ -25,17 +25,7 @@ export const Login = () => {
 
         setLoading(false)
     }
-        
-
-
-        // try {
-        //     setError('')
-        //     setLoading(true)
-        //     await login(email, password)
-        //     history.push('/')
-        // } catch {
-        //     setError('Failed to log in')
-        // }
+    
 
     return (
         <>

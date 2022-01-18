@@ -10,7 +10,8 @@ Modal.setAppElement('#root')
         content: {
             width: '50%',
             textAlign: 'center',
-            backgroundColor: '#E8A87C',
+            backgroundColor: '#46344E',
+            color: 'white',
             top: '50%',
             left: '50%',
             right: 'auto',
@@ -29,12 +30,11 @@ Modal.setAppElement('#root')
              style={customStyles}
             >   
                 <img width="140" height="150" src={props.book.image} alt={props.book.title} />
-                <h1>{props.book.title}</h1>
-                <p>{props.book.author}</p>
-                <p>{props.book.category}</p>
-                <p>{props.book.publish}</p>
-                <p>{props.book.language}</p>
-                <p>{props.book.price}</p>
+                <h1>Tytuł: {props.book.title}</h1>
+                <p>Autor: {props.book.author}</p>
+                <p>Kategoria: {props.book.category}</p>
+                <p>Wydawnictwo: {props.book.publish}</p>
+                <p>Język: {props.book.language}</p>
                 <button onClick={() => setModalIsOpen(false)}> Zamknij </button>
             </Modal>
         </div>

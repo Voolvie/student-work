@@ -28,17 +28,6 @@ const AddBook = () => {
         setFileUrl(await fileRef.getDownloadURL())
         }
 
-    // useEffect(() => {
-    //     if(!file){
-    //         return
-    //     }
-    //     const fileReader = new FileReader()
-    //     fileReader.onload = () => {
-    //         setpreviewUrl(fileReader.result)
-    //     }
-    //     fileReader.readAsDataURL(file)
-    // }, [file])
-
      function handleSubmit (e) {
         e.preventDefault()
 

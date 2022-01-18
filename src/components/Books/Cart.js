@@ -30,8 +30,8 @@ function reducer(state, action) {
 const Cart = () => {
     //DATY 
     const [state, dispatch] = useReducer(reducer, initialState)
-    const dateStart = state.startDate
-    const dateEnd = state.endDate
+    const dateStart = moment(state.startDate).format('DD MMM, YYYY')
+    const dateEnd = moment(state.endDate).format('DD MMM, YYYY')
     const dni = moment(dateEnd).diff(dateStart, 'days')
     //Reszta info
     const [name, setName] = useState('')
@@ -65,12 +65,6 @@ const Cart = () => {
         deleteFromCart()
     }
 
-    const pokaz = () => {
-
-        // const dateStart = `${state.startDate.getDate()}/${state.startDate.getMonth()+1}/${state.startDate.getFullYear()}`
-        // const dateEnd = `${state.endDate.getDate()}/${state.endDate.getMonth()+1}/${state.endDate.getFullYear()}`
-        console.log(dateStart, dateEnd, dni)
-    }
 
     const calcultePrice = () => {
         
@@ -112,9 +106,7 @@ const Cart = () => {
                     surname: surname,
                     street: street,
                     postcode: postcode,
-                    city: city
-                },
-                rent: {
+                    city: city,
                     startDate: dateStart,
                     endDate: dateEnd,
                     fineAfter: dni
@@ -127,8 +119,6 @@ const Cart = () => {
                 doc.ref.delete()
             })
         })
-
-        console.log(booksCollectionRef)
         alert('Twoja prośba o wypożyczenie została przesłana!')
         history.push('/')
 
@@ -146,7 +136,7 @@ const Cart = () => {
                     <div className="koszyk">
                     {cart.map((book) => {
                     return (
-                        <div key={book.id} className="koszyk-ksiazki">
+                        <div key={book.id} className="ksiazka">
                             <div>
                                 <img width="140" height="150" src={book.image} alt={book.title} />
                             </div>
@@ -196,6 +186,7 @@ const Cart = () => {
                     </Form>
                     </div>
                     <div className="term">
+                        {cart.length > 3 ? <div><h3>Możesz wypożyczyć maksymalnie 3 książki</h3></div> :
                         <Form>
                             <h2>Wybierz termin</h2>
                         <DateRangeInput
@@ -218,6 +209,8 @@ const Cart = () => {
                         </div>  : null}
                     
                         </Form>
+                         }
+                        
                     </div>
                 </div>
                 }
