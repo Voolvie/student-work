@@ -119,3 +119,9 @@ color: white
     padding: 10px;
     color:white;
 }
+.auth {
+    width: 100%;
+    margin-top: 2%;
+    text-align: center;
+    color: white;
+}

@@ -37,6 +37,7 @@ const NavbarAdmin = () => {
                             <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/add-book">AddBook</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/requests">Requests</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/rented-books">Rented Books</Nav.Link>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>

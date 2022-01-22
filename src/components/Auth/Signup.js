@@ -45,7 +45,7 @@ export default function Signup() {
   }
 
   return (
-    <>
+    <div className="dashboard-content">
     <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
       <div className="w-100" style={{ maxWidth: "400px"}}>
       <Card>
@@ -79,11 +79,11 @@ export default function Signup() {
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
+      <div className="auth">
         Already have an account? <Link to="/login">Log In</Link>
       </div>
     </div>
     </Container>
-    </>
+    </div>
   )
 }

@@ -37,7 +37,18 @@ const Requests = () => {
                 userEmail: rentedBookId.userEmail,
                 title: rentedBookId.title,
                 author: rentedBookId.author,
-                bookID: rentedBookId.bookID
+                bookID: rentedBookId.bookID,
+                startDate:rentedBookId.dane.startDate,
+                endDate: rentedBookId.dane.endDate
+            })
+                db.collection('rented-books').doc(rentedBookId.userEmail + ' ' + rentedBookId.title).set({
+                image: rentedBookId.image,
+                userEmail: rentedBookId.userEmail,
+                title: rentedBookId.title,
+                author: rentedBookId.author,
+                bookID: rentedBookId.bookID,
+                startDate:rentedBookId.dane.startDate,
+                endDate: rentedBookId.dane.endDate
             })
         }).then(() => {
                 booksCollectionRef.get().then((querySnapshot) => {

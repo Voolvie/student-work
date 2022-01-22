@@ -6,12 +6,12 @@ import { useAuth } from "../../context/AuthContext";
 import "../style.css"
 
 
-const MyBooks = () => {
+const MyFines = () => {
     const [myBooks, setMyBooks] = useState([])
     const {currentUser} = useAuth()
 
     useEffect(() => {
-            const booksCollectionRef = db.collection('users-books').where("userEmail", "==", currentUser.email)
+            const booksCollectionRef = db.collection('fines').where("userEmail", "==", currentUser.email)
             const getMyBooks = async () => {
             const data = await getDocs(booksCollectionRef)
             setMyBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
@@ -25,18 +25,16 @@ const MyBooks = () => {
             <NavbarUser/>
                 <div className="my-books-layout">
                 {
-                myBooks.map((book, i) => {
+                myBooks.map((book) => {
                     return (
                         <div key={book.id} className="my-books">
                             <div>
                                 <img width="140" height="150" src={book.image} alt={book.title} />
                             </div>
                             <div>
-                                <h4>{book.title}</h4>
-                                <h5>{book.userEmail}</h5>
-                                <p>Data wypożyczenia: {book.startDate}</p>
-                                <p>Data oddania: {book.endDate}</p>
-                                <button>Oddaj</button>
+                                <h3>{book.title}</h3>
+                                <h3>{book.fine} zł</h3>
+                                <button>Rozlicz się</button>
                             </div>
                         </div>
 
@@ -47,4 +45,4 @@ const MyBooks = () => {
     )
 }
 
-export default MyBooks
+export default MyFines

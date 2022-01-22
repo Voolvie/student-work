@@ -16,6 +16,8 @@ import MyBooks from "./Books/MyBooks";
 import Requests from "./Books/Requests";
 import { Test } from "./Test"
 import { CategoryProvider } from "../context/CategoryContext";
+import RentedBooks from "./Books/RentedBooks";
+import MyFines from "./Books/Fines";
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
                 <PrivateRoute path='/cart' component={Cart} />
                 <PrivateRoute path='/my-books' component={MyBooks} />
                 <PrivateRoute path='/requests' component={Requests} />
+                <PrivateRoute path='/rented-books' component={RentedBooks} />
+                <PrivateRoute path='/my-fines' component={MyFines} />
                 <Route path='/signup' component={Signup}/>
                 <Route path='/login' component={Login}/>
                 <Route path='/forgot-password' component={ForgotPassword}/>
