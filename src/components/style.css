@@ -3,14 +3,21 @@ width: 100vw;
 height: 100vw;
 background-image: url("../img/dashboardBackground.jpg");
 }
+
+.btn {
+    line-height: 1 !important;
+}
 .navbar {
     width: 100vw;
     height: 100px;
     background-color: #46344E;
+    display: flex;
+    justify-content: space-around;
     color: white;
 }
 .navbar-brand{
 color: #FAED26 !important;
+font-size: x-large !important;
 }
 #navbarScrollingDropdown {
 color: white
@@ -18,7 +25,6 @@ color: white
 .ksiazki{
     width: 100vw;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
@@ -27,12 +33,12 @@ color: white
 
 }
 .ksiazka {
-    width: 30%;
+    width: 18%;
     height: 400px;
     margin-top: 10px;
     border: solid black;
     text-align: center;
-    flex: 1 0 17%;
+    box-sizing: border-box;
     margin: 0 1% 1% 1%;
     padding: 10px;
     border-style: inset;
@@ -66,12 +72,14 @@ color: white
     overflow: hidden;
 }
 .kategoria {
-    text-align: center;
+    text-align: left;
     background-color: #46344E;
     color: #FAED26;
+    padding-left: 10px;
     margin: 10px;
-    width: 25%;
-    height: 5vh;
+    width: 30%;
+    height: 8vh;
+    display: block;
 }
 .koszyk {
     display: flex;

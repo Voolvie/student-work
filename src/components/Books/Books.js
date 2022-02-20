@@ -5,13 +5,15 @@ import "../style.css"
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext} from "../../context/CategoryContext";
 import BookModal from "../Modals/BookModal";
-import { locale } from "moment";
+import NavbarBooks from "../Navbar/NavbarBooks";
 
 
 const Books = (props) => {
     const [books, setBooks] = useState([])
     const { currentUser } = useAuth()
     const [category, setCategory]  = useContext(CategoryContext)
+    const [isAdmin, setIsAdmin] = useState(false)
+    const [available, setAvailable] = useState(true)
     
     
 
@@ -31,9 +33,14 @@ const Books = (props) => {
             }
         getBooks()
         }
-        
 
-    }, [category])
+        if (currentUser === null) {
+             setIsAdmin(false)
+        } else if (currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22") {
+            setIsAdmin(true)
+        }
+        
+    }, [category, available])
 
     const addToCart = ({title, author, bookID, image}) => {
         if (currentUser != null) {
@@ -51,11 +58,28 @@ const Books = (props) => {
         
     }
 
+    const changeState = ({available, title}) => {
+        if (available === true)
+        {
+            db.collection('books').doc(title).update({
+            available: false
+             })
+             setAvailable('Niedostępna')
+        } else {
+           db.collection('books').doc(title).update({
+            available: true
+             })
+             setAvailable('Dostępna') 
+        }
+        
+    }
+
 
     return (
     <div>
         <div className="kategoria">
-            <h4> Kategoria: {category ? category : `Wszystko`}</h4>
+            <h5>Kategoria: {category ? category : "Wszystko"}</h5>
+            <NavbarBooks />
         </div>
         <div className="ksiazki">
             {books.map((book) => {
@@ -68,17 +92,24 @@ const Books = (props) => {
                             <h4>{book.title}</h4>
                             <h5>{book.author}</h5>
                             <p>{book.category}</p>
-                            {/* {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22"  ? 
+                            {isAdmin ? 
                                 <div>
-                                    <button>edytuj</button>
-                                    <button>usuń</button>
+                                    {book.available ?
+                                    <button onClick={(e) => changeState(book, e)}>Oznacz jako niedostępna</button>
+                                    :
+                                    <button onClick={(e) => changeState(book, e)}>Oznacz jako dostępna</button>
+                                    } 
                                 </div> : 
                                 <div>
-                                    <button>wypożycz</button>
+                                    {book.available ?
+                                    <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
+                                    :
+                                    <p>Książka jest niedostępna</p>
+                                    } 
                                 </div>
-                            } */}
+                            }
+                            
                             <BookModal book={book} />
-                            <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
                         </div>
                     </div>
                     

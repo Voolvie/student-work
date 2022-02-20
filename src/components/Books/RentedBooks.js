@@ -55,6 +55,7 @@ const RentedBooks = () => {
 
             db.collection('rented-books').doc(userEmail + ' ' + title).delete()
             db.collection('fines').doc(userEmail + ' ' + title).delete()
+            db.collection('users-books').doc(userEmail + ' ' + title).delete()
     }
     return (
         <div className="dashboard-content">

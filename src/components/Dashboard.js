@@ -5,8 +5,6 @@ import NavbarAdmin from "./Navbar/NavbarAdmin"
 import Books from "./Books/Books";
 import './style.css'
 
-import { CategoryContext, CategoryProvider } from "../context/CategoryContext";
-
 
 export const Dashboard = () => {
     const {currentUser} = useAuth()

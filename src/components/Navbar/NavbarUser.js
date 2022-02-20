@@ -37,10 +37,20 @@ const NavbarUser = () => {
                             <Nav.Link style={{color:"white"}} href="/my-books">My Books</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/my-fines">My Fines</Nav.Link>
                             <NavDropdown  title="Kategorie" id="navbarScrollingDropdown">
-                                <NavDropdown.Item  onClick={() => setCategory("x")}>x</NavDropdown.Item>
-                                <NavDropdown.Item  onClick={() => setCategory("Powieść zagraniczna")}>Powieść zagraniczna</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => setCategory("")}>Wszystko</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={() => setCategory("")}>Bez</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Biografia")}>Biografia</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Historia")}>Historia</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Literatura młodzieżowa")}>Literatura młodzieżowa</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Powieść")}>Powieść</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Dla dzieci")}>Dla dzieci</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Horror")}>Horror</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Literatura obyczajowa")}>Literatura obyczajowa</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Romans")}>Romans</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Filozofia")}>Filozofia</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Lektury")}>Lektury</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Literatura piękna")}>Literatura piękna</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={() => setCategory("Sensacja Thriller")}>Sensacja Thriller</NavDropdown.Item> 
                             </NavDropdown>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>

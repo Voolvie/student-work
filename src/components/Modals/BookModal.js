@@ -31,6 +31,7 @@ Modal.setAppElement('#root')
             >   
                 <img width="140" height="150" src={props.book.image} alt={props.book.title} />
                 <h1>Tytuł: {props.book.title}</h1>
+                <h5>Opis: {props.book.description}</h5>
                 <p>Autor: {props.book.author}</p>
                 <p>Kategoria: {props.book.category}</p>
                 <p>Wydawnictwo: {props.book.publish}</p>

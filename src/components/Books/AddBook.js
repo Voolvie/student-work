@@ -12,7 +12,7 @@ const AddBook = () => {
     const [publish, setPublish] = useState('')
     const [category, setCategory] = useState('')
     const [language, setLanguage] = useState('')
-    const [bookID, setBookID] = useState('')
+    const [description, setDescription] = useState('')
     const [fileUrl, setFileUrl] = useState(null) 
 
     const { currentUser } = useAuth()
@@ -31,7 +31,7 @@ const AddBook = () => {
      function handleSubmit (e) {
         e.preventDefault()
 
-        if(title === "" || author === "" || publish === "" || category === "" || language === "" || bookID === "" || fileUrl === null) {
+        if(title === "" || author === "" || publish === "" || category === "" || language === "" || description === "" || fileUrl === null) {
             alert('Uzupełnij wszystko')
         } else {
                 setLoading(true)
@@ -42,7 +42,7 @@ const AddBook = () => {
                 publish: publish,
                 category: category,
                 language: language,
-                bookID: bookID,
+                description: description,
                 image: fileUrl
             }).then(()=> {
                 setTitle('')
@@ -50,7 +50,7 @@ const AddBook = () => {
                 setPublish('')
                 setCategory('')
                 setLanguage('')
-                setBookID('')
+                setDescription('')
                 alert('Dodano książkę!')
             }).catch((e) => {
                 setError('Error', error)
@@ -88,15 +88,32 @@ const AddBook = () => {
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Kategoria</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setCategory(e.target.value)}  required />
+                                <Form.Select type="text"  onChange={(e) => setCategory(e.target.value)}  required >
+                                <option value="Biografia">Biografia</option>
+                                <option value="Historia">Historia</option>
+                                <option value="Literatura młodzieżowa">Literatura młodzieżowa</option>
+                                <option value="Powieść">Powieść</option>
+                                <option value="Dla dzieci">Dla dzieci</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Literatura obyczajowa">Literatura obyczajowa</option>
+                                <option value="Romans">Romans</option>
+                                <option value="Filozofia">Filozofia</option>
+                                <option value="Lektury">Lektury</option>
+                                <option value="Literatura piękna">Literatura piękna</option>
+                                <option value="Sensacja Thriller">Sensacja Thriller</option>
+                                </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Język</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setLanguage(e.target.value)}  required />
+                                <Form.Select type="text"  onChange={(e) => setLanguage(e.target.value)}  required >
+                                <option value="Polski">Polski</option>
+                                <option value="Angielski">Angielski</option>
+                                <option value="Niemiecki">Niemiecki</option>
+                                </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3">
-                                <Form.Label>ID książki</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setBookID(e.target.value)}  required />
+                                <Form.Label>Opis</Form.Label>
+                                <Form.Control type="text"  onChange={(e) => setDescription(e.target.value)}  required />
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Zdjecie ksiazki</Form.Label>

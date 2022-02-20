@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext } from "../../context/CategoryContext";
 
-// TRZEBA WYMYSLIC HREFA DO KATEGORII BO NIE DZIALA Z INNYCH NAVBAROW
 
 const NavbarAdmin = () => {
     const [error, setError] = useState('')
@@ -25,7 +24,7 @@ const NavbarAdmin = () => {
     return (
         <div>
             <Navbar className="navbar">
-                <Container fluid>
+                <Container >
                     <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
@@ -43,12 +42,6 @@ const NavbarAdmin = () => {
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
-                            </NavDropdown>
-                            <NavDropdown title="Kategorie" id="navbarScrollingDropdown">
-                                <NavDropdown.Item  onClick={() => setCategory("x")}>x</NavDropdown.Item>
-                                <NavDropdown.Item  onClick={() => setCategory("Powieść zagraniczna")}>Powieść zagraniczna</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={() => setCategory("")}>Bez</NavDropdown.Item>
                             </NavDropdown>
                             <Button variant="link" onClick={handleLogout}>Log out</Button>
                         </Nav>

@@ -166,17 +166,17 @@ const Cart = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Ulica i nr domu</Form.Label>
-                            <Form.Control type="text" placeholder="Nazwisko" onChange={(e) => setStreet(e.target.value)} />
+                            <Form.Control type="text" placeholder="Ulica" onChange={(e) => setStreet(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Kod pocztowy</Form.Label>
-                            <Form.Control type="text" placeholder="Nazwisko" onChange={(e) => setPostcode(e.target.value)} />
+                            <Form.Control type="text" placeholder="Kod pocztowy" onChange={(e) => setPostcode(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Miasto</Form.Label>
-                            <Form.Select type="text" placeholder="Nazwisko" onChange={(e) => setCity(e.target.value)}>
+                            <Form.Select type="text"  onChange={(e) => setCity(e.target.value)}>
                                 <option value="Gliwice">Gliwice</option>
                                 <option value="Zabrze">Zabrze</option>
                                 <option value="Bytom">Bytom</option>
