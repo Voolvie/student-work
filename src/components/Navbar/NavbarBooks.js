@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext } from "../../context/CategoryContext";
 import '../style.css'
+import SearchBar from "./SearchBar";
 
 // TRZEBA WYMYSLIC HREFA DO KATEGORII BO NIE DZIALA Z INNYCH NAVBAROW
 

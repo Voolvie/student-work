@@ -6,6 +6,8 @@ import { useAuth } from "../../context/AuthContext";
 import { CategoryContext} from "../../context/CategoryContext";
 import BookModal from "../Modals/BookModal";
 import NavbarBooks from "../Navbar/NavbarBooks";
+import SearchBar from "../Navbar/SearchBar";
+
 
 
 const Books = (props) => {
@@ -14,6 +16,7 @@ const Books = (props) => {
     const [category, setCategory]  = useContext(CategoryContext)
     const [isAdmin, setIsAdmin] = useState(false)
     const [available, setAvailable] = useState(true)
+
     
     
 
@@ -76,10 +79,15 @@ const Books = (props) => {
 
 
     return (
-    <div>
+    <div className="booksLayout">
         <div className="kategoria">
             <h5>Kategoria: {category ? category : "Wszystko"}</h5>
-            <NavbarBooks />
+            <div className="bookFunctions">
+                <SearchBar data={books}/>
+            </div>
+            <div>
+                <NavbarBooks />
+            </div>
         </div>
         <div className="ksiazki">
             {books.map((book) => {

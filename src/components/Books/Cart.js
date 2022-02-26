@@ -136,7 +136,7 @@ const Cart = () => {
                     <div className="koszyk">
                     {cart.map((book) => {
                     return (
-                        <div key={book.id} className="ksiazka">
+                        <div key={book.id} className="ksiazkaCart">
                             <div>
                                 <img width="140" height="150" src={book.image} alt={book.title} />
                             </div>
