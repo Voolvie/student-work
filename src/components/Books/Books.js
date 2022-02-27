@@ -110,14 +110,19 @@ const Books = (props) => {
                                 </div> : 
                                 <div>
                                     {book.available ?
-                                    <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
+                                    <div>
+                                        <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
+                                        <a className="btn btn-primary" href={"/books/"+book.bookID} target="_blank">Pokaż więcej</a>
+                                    </div>
                                     :
                                     <p>Książka jest niedostępna</p>
                                     } 
                                 </div>
+                                
                             }
                             
-                            <BookModal book={book} />
+                            
+                            {/* <BookModal book={book} /> */}
                         </div>
                     </div>
                     

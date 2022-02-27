@@ -18,6 +18,7 @@ import { Test } from "./Test"
 import { CategoryProvider } from "../context/CategoryContext";
 import RentedBooks from "./Books/RentedBooks";
 import MyFines from "./Books/Fines";
+import SingleBookPage from "./Books/SingleBookPage";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
                 <PrivateRoute path='/requests' component={Requests} />
                 <PrivateRoute path='/rented-books' component={RentedBooks} />
                 <PrivateRoute path='/my-fines' component={MyFines} />
+                <PrivateRoute path='/books/:id' component={SingleBookPage} />
                 <Route path='/signup' component={Signup}/>
                 <Route path='/login' component={Login}/>
                 <Route path='/forgot-password' component={ForgotPassword}/>

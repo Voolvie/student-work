@@ -13,6 +13,7 @@ const AddBook = () => {
     const [category, setCategory] = useState('')
     const [language, setLanguage] = useState('')
     const [description, setDescription] = useState('')
+    const [bookID, setBookID] = useState('')
     const [fileUrl, setFileUrl] = useState(null) 
 
     const { currentUser } = useAuth()
@@ -31,7 +32,7 @@ const AddBook = () => {
      function handleSubmit (e) {
         e.preventDefault()
 
-        if(title === "" || author === "" || publish === "" || category === "" || language === "" || description === "" || fileUrl === null) {
+        if(title === "" || author === "" || publish === "" || category === "" || language === "" || description === "" || fileUrl === null || bookID === "") {
             alert('Uzupełnij wszystko')
         } else {
                 setLoading(true)
@@ -43,7 +44,8 @@ const AddBook = () => {
                 category: category,
                 language: language,
                 description: description,
-                image: fileUrl
+                image: fileUrl,
+                bookID: bookID
             }).then(()=> {
                 setTitle('')
                 setAuthor('')
@@ -51,6 +53,7 @@ const AddBook = () => {
                 setCategory('')
                 setLanguage('')
                 setDescription('')
+                setBookID('')
                 alert('Dodano książkę!')
             }).catch((e) => {
                 setError('Error', error)
@@ -114,6 +117,10 @@ const AddBook = () => {
                             <Form.Group className="mb-3">
                                 <Form.Label>Opis</Form.Label>
                                 <Form.Control type="text"  onChange={(e) => setDescription(e.target.value)}  required />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Id książki</Form.Label>
+                                <Form.Control type="text"  onChange={(e) => setBookID(e.target.value)}  required />
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Zdjecie ksiazki</Form.Label>
