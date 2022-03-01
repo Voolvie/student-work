@@ -42,7 +42,6 @@ const Books = (props) => {
         } else if (currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22") {
             setIsAdmin(true)
         }
-        
     }, [category, available])
 
     const addToCart = ({title, author, bookID, image}) => {

@@ -36,6 +36,7 @@ const NavbarUser = ({data}) => {
                             <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/my-books">My Books</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/my-fines">My Fines</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/contact">Kontakt</Nav.Link>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>

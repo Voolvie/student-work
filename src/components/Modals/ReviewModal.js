@@ -58,8 +58,6 @@ Modal.setAppElement('#root')
             })
 
         }
-         //  dodaje currentusera do authora
-         // zmiana wielkosci inputa recenzji
     }
     console.log(currentUser.displayName)
     return (
