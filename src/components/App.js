@@ -17,11 +17,12 @@ import Requests from "./Books/Requests";
 import { Test } from "./Test"
 import { CategoryProvider } from "../context/CategoryContext";
 import RentedBooks from "./Books/RentedBooks";
-import MyFines from "./Books/Fines";
+import Returns from "./Books/Returns";
 import SingleBookPage from "./Books/SingleBookPage";
 import Contact from "./Books/Contact";
 import ContactAdmin from "./Books/ContactAdmin";
 import SingleContact from "./Books/SingleContact";
+import Deleted from "./Books/Deleted";
 
 const App = () => {
   return (
@@ -40,11 +41,12 @@ const App = () => {
                 <PrivateRoute path='/my-books' component={MyBooks} />
                 <PrivateRoute path='/requests' component={Requests} />
                 <PrivateRoute path='/rented-books' component={RentedBooks} />
-                <PrivateRoute path='/my-fines' component={MyFines} />
+                <PrivateRoute path='/returns' component={Returns} />
                 <PrivateRoute path='/contact' component={Contact} />
                 <PrivateRoute path='/contact-admin' component={ContactAdmin} />
                 <PrivateRoute path='/contacts/:id' component={SingleContact} />
                 <PrivateRoute path='/books/:id' component={SingleBookPage} />
+                <PrivateRoute path='/deleted' component={Deleted} />
                 <Route path='/signup' component={Signup}/>
                 <Route path='/login' component={Login}/>
                 <Route path='/forgot-password' component={ForgotPassword}/>

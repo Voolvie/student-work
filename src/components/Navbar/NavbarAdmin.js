@@ -2,14 +2,14 @@ import React, {useContext, useState} from "react";
 import { Button, Container, FormControl, Nav, Navbar, NavDropdown, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { CategoryContext } from "../../context/CategoryContext";
+
 
 
 const NavbarAdmin = () => {
     const [error, setError] = useState('')
     const { currentUser, logout} = useAuth()
     const history = useHistory()
-    const [category, setCategory] = useContext(CategoryContext)
+
 
      async function handleLogout() {
         setError('')
@@ -38,6 +38,8 @@ const NavbarAdmin = () => {
                             <Nav.Link style={{color:"white"}} href="/requests">Requests</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/rented-books">Rented Books</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/contact-admin">Pomoc</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/returns">Zwroty</Nav.Link>
+                            <Nav.Link style={{color:"white"}} href="/deleted">Usunięte</Nav.Link>
                             <NavDropdown title="Profile" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
@@ -46,15 +48,6 @@ const NavbarAdmin = () => {
                             </NavDropdown>
                             <Button variant="link" onClick={handleLogout}>Log out</Button>
                         </Nav>
-                        <Form className="d-flex">
-                            <FormControl
-                                type="search"
-                                placeholder="search"
-                                className="me-2"
-                                aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

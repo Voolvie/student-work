@@ -39,7 +39,15 @@ const Requests = () => {
                 author: rentedBookId.author,
                 bookID: rentedBookId.bookID,
                 startDate:rentedBookId.dane.startDate,
-                endDate: rentedBookId.dane.endDate
+                endDate: rentedBookId.dane.endDate,
+                address: {
+                    surname: rentedBookId.dane.name,
+                    name: rentedBookId.dane.surname,
+                    phoneNumber: rentedBookId.dane.phoneNumber,
+                    city: rentedBookId.dane.city,
+                    postcode: rentedBookId.dane.postcode,
+                    street: rentedBookId.dane.street
+                }
             })
                 db.collection('rented-books').doc(rentedBookId.userEmail + ' ' + rentedBookId.title).set({
                 image: rentedBookId.image,
@@ -48,7 +56,15 @@ const Requests = () => {
                 author: rentedBookId.author,
                 bookID: rentedBookId.bookID,
                 startDate:rentedBookId.dane.startDate,
-                endDate: rentedBookId.dane.endDate
+                endDate: rentedBookId.dane.endDate,
+                address: {
+                    surname: rentedBookId.dane.name,
+                    name: rentedBookId.dane.surname,
+                    phoneNumber: rentedBookId.dane.phoneNumber,
+                    city: rentedBookId.dane.city,
+                    postcode: rentedBookId.dane.postcode,
+                    street: rentedBookId.dane.street
+                }
             })
         }).then(() => {
                 booksCollectionRef.get().then((querySnapshot) => {
@@ -71,7 +87,7 @@ const Requests = () => {
     return (
         <div className="dashboard-content">
             <NavbarAdmin/>
-            {
+            {requests.length > 0 ?
             requests.map((book, i) => {
                 return (
                     <div key={book.id} className="koszyk-ksiazki-2">
@@ -90,7 +106,12 @@ const Requests = () => {
                     </div>
 
                 )
-            })}
+            })
+            :
+            <div className="req">
+                <h1>Brak książek do wypożyczenia</h1>
+            </div>
+        }
         </div>
     )
 }

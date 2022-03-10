@@ -10,12 +10,6 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ContactAdmin = () => {
     const [contacts, setContacts] = useState([])
-    const [newContactTopic, setNewContactTopic] = useState('')
-    const [newContactDescription, setNewContactDescription] = useState('')
-    const {currentUser} = useAuth()
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-    const history = useHistory()
     const [sent, setSent] = useState(false)
 
     useEffect(() => {

@@ -36,6 +36,7 @@ const Cart = () => {
     //Reszta info
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState(0)
     const [street, setStreet] = useState('')
     const [postcode, setPostcode] = useState('')
     const [city, setCity] = useState('')
@@ -104,6 +105,7 @@ const Cart = () => {
                 dane: {
                     name: name,
                     surname: surname,
+                    phoneNumber: phoneNumber,
                     street: street,
                     postcode: postcode,
                     city: city,
@@ -162,6 +164,11 @@ const Cart = () => {
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Nazwisko</Form.Label>
                             <Form.Control type="text" placeholder="Nazwisko" onChange={(e) => setSurname(e.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Telefon</Form.Label>
+                            <Form.Control type="number" placeholder="Nazwisko" onChange={(e) => setPhoneNumber(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">

@@ -17,15 +17,6 @@ const NavbarMain = () => {
                             <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/login">Login</Nav.Link>
                         </Nav>
-                        <Form className="d-flex">
-                            <FormControl
-                                type="search"
-                                placeholder="search"
-                                className="me-2"
-                                aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

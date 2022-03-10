@@ -22,7 +22,7 @@ const Books = (props) => {
 
     useEffect(() => {
         if (category === "") {
-            const booksCollectionRef = db.collection('books')
+             const booksCollectionRef = db.collection('books')
             const getBooks = async () => {
             const data = await getDocs(booksCollectionRef)
             setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
@@ -73,16 +73,22 @@ const Books = (props) => {
              })
              setAvailable('Dostępna') 
         }
-        
     }
-
-
+    // const sortBooksAZ = () => {
+    //     setBooks(books.sort((a,b) => {
+    //     return a.name < b.name;
+    //     }))  
+    // }
+    console.log(books)
     return (
     <div className="booksLayout">
         <div className="kategoria">
             <h5>Kategoria: {category ? category : "Wszystko"}</h5>
             <div className="bookFunctions">
                 <SearchBar data={books}/>
+            </div>
+            <div>
+                {/* <button onClick={() => sortBooksAZ()}>Sortuj alfabetycznie</button> */}
             </div>
             <div>
                 <NavbarBooks />

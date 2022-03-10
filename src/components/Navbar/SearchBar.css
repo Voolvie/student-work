@@ -1,7 +1,12 @@
 .searchInputs {
   display: flex;
 }
-
+.buttonOnclick {
+  border: none;
+  background-color: white;
+  width: 100%;
+  text-align: left;
+}
 .search input {
   background-color: white;
   border: 0;

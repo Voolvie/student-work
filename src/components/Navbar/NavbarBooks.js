@@ -6,8 +6,6 @@ import { CategoryContext } from "../../context/CategoryContext";
 import '../style.css'
 import SearchBar from "./SearchBar";
 
-// TRZEBA WYMYSLIC HREFA DO KATEGORII BO NIE DZIALA Z INNYCH NAVBAROW
-
 const NavbarBooks = () => {
     const [error, setError] = useState('')
     const { currentUser, logout} = useAuth()
