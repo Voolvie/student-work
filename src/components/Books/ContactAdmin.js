@@ -30,15 +30,18 @@ const ContactAdmin = () => {
     }
 
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarAdmin />
+            <div className="requestsLayout">
             {contacts.map((contact) => {
-                return <div key={contact.id} className="text-white">
-                    <h4>{contact.topic} {contact.displayName}</h4>
+                return <div key={contact.id} className="request">
+                    <div className="deleteContact"><button className="optionBtnDelete" onClick={() => handleDelete(contact)}>Usuń</button></div>
+                    <h4>Temat: {contact.topic}</h4>
+                    <h5>Użytkownik:  {contact.displayName}</h5>
                     <a className="btn btn-primary" href={"/contacts/"+contact.displayName} target="_blank">Odpisz</a>
-                    <button onClick={() => handleDelete(contact)}>Usuń wątek</button>
                 </div>
             })}
+            </div>
         </div>
     )
 }

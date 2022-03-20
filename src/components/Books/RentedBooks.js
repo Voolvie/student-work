@@ -5,12 +5,12 @@ import { db} from "../../firebase";
 import { collection, getDocs } from "firebase/firestore"
 import { useHistory, Redirect } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import FineModal from "../Modals/AddressModal";
+
 import moment from "moment";
 import emailjs from "emailjs-com"
-import NavbarBooks from "../Navbar/NavbarBooks";
+
 import SearchBarUsers from "../Navbar/SearchBarUsers";
-import { FilterContext } from "../../context/FilterContext";
+
 import { CategoryContext } from "../../context/CategoryContext";
 
 const RentedBooks = () => {
@@ -95,42 +95,42 @@ const RentedBooks = () => {
         });
      }
     return (
-        <div className="dashboard-content2">
-            <div className="rentedSearch">
-
+        <div>
             {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <Redirect to="/" />}
-            {overDued ? 
-            <button onClick={testClick}>Pokaż wszystko</button>
+        <div className="booksLayout">
+            <div className="searchDiv">
+            {overDued ?
+            <div className="overdueBtn"><button className="overdueBtnStyle" onClick={testClick}>Pokaż wszystko</button></div> 
              :
-            <button onClick={testClick}>Pokaż przeterminowane</button>
+            <div className="overdueBtn"><button className="overdueBtnStyle" onClick={testClick}>Pokaż przeterminowane</button></div>
              }
             <div className="bookFunctions">
+                <h5>Wyszukaj użytkownika</h5>
                 <SearchBarUsers data={books}/>
             </div>
              </div>
             
-            <div className="rentedBooks">
+            <div className="rentedLayout">
                 {books.map((book) => {
                     const dni = moment(book.endDate).diff(todayDate, 'days')
                     const fine = (dni*-1)*0.1
                     return (
-                        <div key={book.id} className="my-books">
+                        <div key={book.id} className="rentedBook">
                             <div><img width="140" height="150" src={book.image} alt={book.title} /></div>
                             <div>
                                 <h4>{book.title}</h4>
                                 <h5>{book.userEmail}</h5>
-                                <p>Data wypożyczenia: {book.startDate}</p>
+                                <p>Wypożyczenie: {book.startDate}</p>
                                 <p>Data oddania: {book.endDate}</p>
-                                {/* <FineModal book={book}/> */}
                                 {dni < 0 && <p>Kara: {((dni*-1)*0.10).toFixed(2)} zł</p>}
-                                <button onClick={() => deleteRentedBook(book)}>Usuń wypożyczenie</button>
-                                <button onClick={() => sendNotification(book, fine)}>Wyślij powiadomienie</button>
+                                <button className="optionBtn" onClick={() => deleteRentedBook(book)}>Usuń wypożyczenie</button>
+                                <button className="optionBtn" onClick={() => sendNotification(book, fine)}>Wyślij powiadomienie</button>
                             </div>
                         </div>
                     )
                 })}
             </div>    
-            
+            </div>
         </div>
     )
 }

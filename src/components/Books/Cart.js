@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState, useReducer } from "react";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
-import "../style.css"
+import "../../styles/styles.scss"
 import { useAuth } from "../../context/AuthContext";
 import NavbarUser from "../Navbar/NavbarUser";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import CartModal from "../Modals/CartModal";
 import { Button, Form } from "react-bootstrap";
 import {DateRangeInput} from '@datepicker-react/styled'
 import moment from 'moment'
@@ -28,12 +27,12 @@ function reducer(state, action) {
 }
 
 const Cart = () => {
-    //DATY 
+
     const [state, dispatch] = useReducer(reducer, initialState)
     const dateStart = moment(state.startDate).format('DD MMM, YYYY')
     const dateEnd = moment(state.endDate).format('DD MMM, YYYY')
     const dni = moment(dateEnd).diff(dateStart, 'days')
-    //Reszta info
+
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [phoneNumber, setPhoneNumber] = useState(0)
@@ -43,7 +42,7 @@ const Cart = () => {
     const [cart, setCart] = useState(false)
     const {currentUser} = useAuth()
     const history = useHistory()
-    //Ceny
+
     const [price, setPrice] = useState({
         book: 0,
         delivery: 0
@@ -127,35 +126,38 @@ const Cart = () => {
     }
 
     return (
-        <div className="dashboard-content">
+        <div>
             <NavbarUser />
-            <div className="cart">
+            <div >
                 {cart == false ? 
-                <div>
+                <div className="cartEmpty">
                     <h1>Koszyk jest pusty</h1>
                 </div> :
                 <div className="cart">
-                    <div className="koszyk">
+                    <div className="booksCart">
                     {cart.map((book) => {
                     return (
-                        <div key={book.id} className="ksiazkaCart">
+                        <div key={book.id} className="book">
                             <div>
                                 <img width="140" height="150" src={book.image} alt={book.title} />
                             </div>
                             <div>
                                 <h4>{book.title}</h4>
                             </div>
-                            <button onClick={() => deleteBook(book)}>
-                                usuń
+                            <div className="deleteButtonStyles">
+                            <button className="deleteButton" onClick={() => deleteBook(book)}>
+                                Usuń
                             </button>
+                            </div>
+                            
                         </div>
                         )
                     })}
                     </div>
-                    <div className="wypozycz">
-                    {/* <CartModal book={cart}/> */}
-                    <Form>
+                    <div className="rent-main">
 
+                    <div className="rent">
+                        <div className="rent1">
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Imie</Form.Label>
                             <Form.Control type="text" placeholder="Imie" onChange={(e) => setName(e.target.value)}/>
@@ -168,9 +170,10 @@ const Cart = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Telefon</Form.Label>
-                            <Form.Control type="number" placeholder="Nazwisko" onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <Form.Control type="number" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} />
                         </Form.Group>
-
+                        </div>
+                        <div className="rent2">
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Ulica i nr domu</Form.Label>
                             <Form.Control type="text" placeholder="Ulica" onChange={(e) => setStreet(e.target.value)} />
@@ -189,10 +192,8 @@ const Cart = () => {
                                 <option value="Bytom">Bytom</option>
                             </Form.Select>
                         </Form.Group>
-            
-                    </Form>
-                    </div>
-                    <div className="term">
+                        </div>
+                        <div className="rent3">
                         {cart.length > 3 ? <div><h3>Możesz wypożyczyć maksymalnie 3 książki</h3></div> :
                         <Form>
                             <h2>Wybierz termin</h2>
@@ -217,8 +218,10 @@ const Cart = () => {
                     
                         </Form>
                          }
-                        
+                         </div>
                     </div>
+                    </div>
+
                 </div>
                 }
             </div>

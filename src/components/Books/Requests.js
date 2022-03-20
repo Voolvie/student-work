@@ -85,33 +85,32 @@ const Requests = () => {
         deleteFromRequest()
     }
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarAdmin/>
-            {requests.length > 0 ?
+            <div className="requestsLayout">
+                {requests.length > 0 ?
             requests.map((book, i) => {
                 return (
-                    <div key={book.id} className="koszyk-ksiazki-2">
-                        <div>
-                            <img width="140" height="150" src={book.image} alt={book.title} />
-                        </div>
-                        <div>
+                    <div key={book.id} className="request">
+                        <div >
                             <h4>{book.title}</h4>
                             <h5>{book.userEmail}</h5>
                             <p>{book.dane.name} {book.dane.surname}, {book.dane.street}, {book.dane.postcode} {book.dane.city}</p>
                             <p>Start wypożycznia: {book.dane.startDate}</p>
                             <p>Koniec wypożyczenia: {book.dane.endDate}</p>
-                            <button onClick={() => rentBook(i)}>Wypożycz użytkownikowi</button>
-                            <button onClick={() => dontRent(book)}>Nie wypożyczaj</button>
+                            <button className="optionBtn" onClick={() => rentBook(i)}>Wypożycz użytkownikowi</button>
+                            <button className="optionBtn" onClick={() => dontRent(book)}>Nie wypożyczaj</button>
                         </div>
                     </div>
-
                 )
             })
             :
-            <div className="req">
+            <div>
                 <h1>Brak książek do wypożyczenia</h1>
             </div>
         }
+            </div>
+            
         </div>
     )
 }

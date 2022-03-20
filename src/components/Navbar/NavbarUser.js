@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import SearchBar from "./SearchBar";
 import SearchIcon from '@mui/icons-material/Search';
+import "../../styles/styles.scss"
 
 const NavbarUser = ({data}) => {
     const [error, setError] = useState('')
@@ -22,35 +23,57 @@ const NavbarUser = ({data}) => {
     }
     
     return (
-        <div>
-            <Navbar className="navbar">
-                <Container >
-                    <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
-                        <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
-                        navbarScroll
-                        >
-                            <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
-                            <Nav.Link style={{color:"white"}} href="/my-books">My Books</Nav.Link>
-                            <Nav.Link style={{color:"white"}} href="/my-fines">My Fines</Nav.Link>
-                            <Nav.Link style={{color:"white"}} href="/contact">Kontakt</Nav.Link>
-                            <NavDropdown title="Profile" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
-                                <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
-                            </NavDropdown>
-                            <Button variant="link" onClick={handleLogout}>Log out</Button>
-                        </Nav>
-                        <Nav.Link href="/cart">Koszyk</Nav.Link>
-                    
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+        <div className="_navbar">
+            <div>
+            <h1 className="navbar-title">E-Biblioteka</h1> 
+            </div>
+            <div className="links">
+            <a href="/">Książki</a>
+            <a href="/my-books">Moje książki</a>
+            <a href="/contact">Kontakt</a>
+            <div className="dropdown">
+                <button className="dropBtn">Mój profil</button>
+                <div className="dropdown-content">
+                    <a href="/profile">Profil</a>
+                    <a href="/update-profile">Aktualizuj profil</a>
+                </div>
+            </div>
+            </div>
+            <div className="links-cart">
+            <a href="/cart">Koszyk</a>
+            <button className="logoutBtn" onClick={handleLogout}>Wyloguj się</button>
+            </div>
+            
         </div>
+        // <div>
+        //     <Navbar className="navbar">
+        //         <Container >
+        //             <Navbar.Brand href="#">LIBRARY APP</Navbar.Brand>
+        //             <Navbar.Toggle aria-controls="navbarScroll" />
+        //             <Navbar.Collapse id="navbarScroll">
+        //                 <Nav
+        //                 className="me-auto my-2 my-lg-0"
+        //                 style={{ maxHeight: '100px' }}
+        //                 navbarScroll
+        //                 >
+        //                     <Nav.Link style={{color:"white"}} href="/">Books</Nav.Link>
+        //                     <Nav.Link style={{color:"white"}} href="/my-books">My Books</Nav.Link>
+        //                     <Nav.Link style={{color:"white"}} href="/my-fines">My Fines</Nav.Link>
+        //                     <Nav.Link style={{color:"white"}} href="/contact">Kontakt</Nav.Link>
+        //                     <NavDropdown title="Profile" id="navbarScrollingDropdown">
+        //                         <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+        //                         <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
+        //                         <NavDropdown.Divider />
+        //                         <NavDropdown.Item href="/update-profile">Update profile</NavDropdown.Item>
+        //                     </NavDropdown>
+        //                     <Button variant="link" onClick={handleLogout}>Log out</Button>
+        //                 </Nav>
+        //                 <Nav.Link href="/cart">Koszyk</Nav.Link>
+                    
+        //             </Navbar.Collapse>
+        //         </Container>
+        //     </Navbar>
+        // </div>
     )
 }  
 

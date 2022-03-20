@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import { useAuth } from "../../context/AuthContext";
 import ReviewModal from "../Modals/ReviewModal";
-import "../singleBooks.css"
+import "../../styles/styles.scss"
 
 
 const SingleBookPage = (props) => {
@@ -37,7 +37,7 @@ const SingleBookPage = (props) => {
     }
     
     return (
-        <div className="dashboard-content">
+        <div>
             <NavbarUser/>
                 <div className="singleBook-layout">
                     <div className="singleBook-left">
@@ -56,7 +56,7 @@ const SingleBookPage = (props) => {
                                 <h4>{book.title}</h4>
                                 <h5>{book.author}</h5>
                                 <p>{book.category}</p>
-                                <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
+                                <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
                             </div>
                          </div>
                          <div className="singleBook-description">
@@ -77,7 +77,7 @@ const SingleBookPage = (props) => {
                             
                          </div>
                           <div className="singleBook-description">
-                             <ReviewModal book={book}/>
+                              {currentUser !== null && <ReviewModal book={book}/>}                     
                          </div>
                         </div>
                     )

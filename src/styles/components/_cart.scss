@@ -1,0 +1,46 @@
+.booksCart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.cart {
+    display: block;
+}
+.cartEmpty{
+    margin: 20px;
+    text-align: center;
+}
+.deleteButtonStyles {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.deleteButton {
+    background-color: rgb(192, 93, 0);
+    border-color: black;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+}
+.rent-main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.rent {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    width: 1000px;
+    box-shadow:  0 0 1em black;
+}
+.rent1 {
+    margin-right: 50px;
+}
+.rent2 {
+    margin-right: 50px;
+}

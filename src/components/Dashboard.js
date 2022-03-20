@@ -12,7 +12,7 @@ export const Dashboard = (data) => {
 
     return (
 
-        <div className="dashboard-content">
+        <div >
             {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <NavbarUser/>}
             <Books />
         </div>

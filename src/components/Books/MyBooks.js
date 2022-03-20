@@ -3,7 +3,7 @@ import NavbarUser from "../Navbar/NavbarUser";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import { useAuth } from "../../context/AuthContext";
-import "../style.css"
+import "../../styles/styles.scss"
 import moment from "moment";
 
 
@@ -53,30 +53,42 @@ const MyBooks = () => {
     }
 
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarUser/>
-            <h1 className="color-white">Kara: {sum.toFixed(2)}</h1>
-                <div className="my-books-layout">
-                {
-                myBooks.map((book, i) => {
-                    const dni = moment(book.endDate).diff(todayDate, 'days')
-                    const fine = (dni*-1)*0.1
-                    return (
-                        <div key={book.id} className="my-books">
-                            <div>
-                                <img width="140" height="150" src={book.image} alt={book.title} />
-                            </div>
-                            <div>
-                                <h4>{book.title}</h4>
-                                <p>Data wypożyczenia: {book.startDate}</p>
-                                <p>Data oddania: {book.endDate}</p>
-                                {dni < 0 && <p>Kara: {((dni*-1)*0.10).toFixed(2)} zł</p>}
-                                <button onClick={() => returnBook(book, fine)}>Oddaj</button>
-                            </div>
-                        </div>
+                <div className="singleBook-layout">
+                    <div className="singleBook-left">
 
-                    )
-                })}
+                    </div>
+                    <div className="myBooks-main">
+                     <div className="fine">
+                    <h1 className="color-white">Kara: {sum.toFixed(2)}</h1>
+                     </div>
+                     <div className="singleBook-main-main">
+                    {
+                        myBooks.map((book, i) => {
+                            const dni = moment(book.endDate).diff(todayDate, 'days')
+                            const fine = (dni*-1)*0.1
+                            return (
+                                <div key={book.id} className="myBook">
+                                    <div>
+                                        <img width="140" height="150" src={book.image} alt={book.title} />
+                                    </div>
+                                    <div>
+                                        <h4>{book.title}</h4>
+                                        <p>Wypożyczenie: {book.startDate}</p>
+                                        <p>Termin oddania: {book.endDate}</p>
+                                        {dni < 0 && <p>Kara: {((dni*-1)*0.10).toFixed(2)} zł</p>}
+                                        <button onClick={() => returnBook(book, fine)}>Oddaj</button>
+                                    </div>
+                                </div>
+
+                            )
+                        })}
+                     </div>
+                    </div>
+                    
+                    <div className="singleBook-right">
+                    </div>
                  </div>
         </div>
     )

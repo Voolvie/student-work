@@ -26,7 +26,6 @@ const SingleContact = (props) => {
             setContact(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
             }
         getContact()
-        console.log(props.match.params.id)
     }, [sent])
 
     function handleSubmitSent (e) {
@@ -53,24 +52,15 @@ const SingleContact = (props) => {
 
         }
     }
-
-    const handleDelete = ({topic, displayName}) => {
-                const deleteFromRequest = async () => {
-            db.collection('contact').doc(topic + ' ' + displayName).delete()
-        }
-        deleteFromRequest()
-        setSent(!sent)
-    }
-
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarAdmin />
-            <div className="my-books-layout">
-                <div>
-                    <h4>Temat: {contact.topic}</h4>
+            <div className="singleBook-layout">
+            <div className="singleBook-left"></div>
+                <div className="singleBook-main">
                     {contact.map((message) => {
                     return (
-                        <div key={message.id} className="">
+                        <div key={message.id} className="contactMessage">
                             {message.review.map((opis) => {
                                 return <p key={opis.id}>{opis}</p>
                             })}
@@ -88,22 +78,8 @@ const SingleContact = (props) => {
                 </Form>
                 </div>
                 </div> 
-
-                 </div>
-            {/* {contact.map((contact) => {
-                return <div>
-                    <h4>{contact.topic}</h4>
-                    <Form onSubmit={handleSubmitSent}>
-                    <Form.Group className="reviewText">
-                        <Form.Label>Odpisz: </Form.Label>
-                        <Form.Control type="text" onChange={(e) => setNewContactDescription(e.target.value)} required />
-                    </Form.Group>
-                    <Button disabled={loading} className="w-20" type="submit">Wyślij</Button>
-                    </Form>
-                    <button onClick={handleAnswer}>Odpisz</button>
-                    <button onClick={() => handleDelete(contact)}>Usuń wątek</button>
-                </div>
-            })} */}
+                <div className="singleBook-right"></div>
+            </div>
         </div>
     )
 }

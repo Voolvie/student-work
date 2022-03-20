@@ -1,0 +1,17 @@
+.contactTopic {
+    text-align: center;
+}
+.contactMessage {
+    word-wrap: break-word;
+}
+.optionBtnDelete {
+    background-color: rgb(192, 93, 0);
+    border-color: black;
+    width: 50px;
+    border-radius: 10px;
+    color: white;
+}
+.deleteContact {
+    display: flex;
+    justify-content: flex-end;
+}

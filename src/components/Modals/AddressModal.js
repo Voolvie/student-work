@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import "./BookModal.css"
 import Modal from "react-modal"
-import { Button, Form } from "react-bootstrap";
-import { db } from "../../firebase";
 
 Modal.setAppElement('#root')
 
@@ -13,7 +10,7 @@ Modal.setAppElement('#root')
         content: {
             width: '50%',
             textAlign: 'center',
-            backgroundColor: '#46344E',
+            backgroundColor: '#C07100',
             color: 'white',
             top: '50%',
             left: '50%',
@@ -27,7 +24,7 @@ Modal.setAppElement('#root')
 
     return (
         <div>
-            <button
+            <button className="optionBtn"
             onClick={() => setModalIsOpen(true)}
             >Pokaż adres</button>
             <Modal
@@ -39,7 +36,7 @@ Modal.setAppElement('#root')
                 <p>Telefon: {props.book.address.phoneNumber}</p>
                 <p>Ulica: {props.book.address.street}</p>
                 <p>Kod pocztowy: {props.book.address.postcode}, {props.book.address.city}</p>    
-                <button onClick={() => setModalIsOpen(false)}> Zamknij </button>
+                <button  onClick={() => setModalIsOpen(false)}> Zamknij </button>
             </Modal>
         </div>
     )

@@ -3,7 +3,7 @@ import NavbarUser from "../Navbar/NavbarUser";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import { useAuth } from "../../context/AuthContext";
-import "../style.css"
+import "../../styles/styles.scss"
 import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -79,18 +79,21 @@ const Contact = () => {
 
         }
     }
-
-
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarUser/>
-                <div className="my-books-layout">
+            <div className="singleBook-layout">
+                <div className="singleBook-left"></div>
+                <div className="singleBook-main">
                 {contact.length !== 0 ?
                 <div>
-                    <h4>Temat: {contact[0].topic}</h4>
+                    <div className="contactTopic">
+                        <h4>Temat: {contact[0].topic}</h4>
+                    </div>
+                    
                     {contact.map((message) => {
                     return (
-                        <div key={message.id} className="">
+                        <div key={message.id} className="contactMessage">
                             {message.review.map((opis) => {
                                 return <p key={opis.id}>{opis}</p>
                             })}
@@ -124,6 +127,8 @@ const Contact = () => {
                 </div>
             }
                  </div>
+                 <div className="singleBook-right"></div>
+            </div>
         </div>
     )
 }

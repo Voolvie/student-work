@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './SearchBar.css'
+import "../../styles/styles.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from "../../context/AuthContext";

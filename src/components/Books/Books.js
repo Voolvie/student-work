@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import "../style.css"
+import "../../styles/styles.scss"
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext} from "../../context/CategoryContext";
-import BookModal from "../Modals/BookModal";
 import NavbarBooks from "../Navbar/NavbarBooks";
 import SearchBar from "../Navbar/SearchBar";
 
@@ -74,32 +74,24 @@ const Books = (props) => {
              setAvailable('Dostępna') 
         }
     }
-    // const sortBooksAZ = () => {
-    //     setBooks(books.sort((a,b) => {
-    //     return a.name < b.name;
-    //     }))  
-    // }
     console.log(books)
     return (
     <div className="booksLayout">
-        <div className="kategoria">
+        <div className="categoryDiv">
             <h5>Kategoria: {category ? category : "Wszystko"}</h5>
             <div className="bookFunctions">
                 <SearchBar data={books}/>
             </div>
             <div>
-                {/* <button onClick={() => sortBooksAZ()}>Sortuj alfabetycznie</button> */}
-            </div>
-            <div>
                 <NavbarBooks />
             </div>
         </div>
-        <div className="ksiazki">
+        <div className="books">
             {books.map((book) => {
                 return (
-                    <div key={book.id} className="ksiazka">
+                    <div key={book.id} className="book">
                         <div>
-                            <img width="140" height="150" src={book.image} alt={book.title} />
+                            <img width="140" height="160" src={book.image} alt={book.title} />
                         </div>
                         <div>
                             <h4>{book.title}</h4>
@@ -108,16 +100,20 @@ const Books = (props) => {
                             {isAdmin ? 
                                 <div>
                                     {book.available ?
-                                    <button onClick={(e) => changeState(book, e)}>Oznacz jako niedostępna</button>
+                                    <button className="optionBtn" onClick={(e) => changeState(book, e)}>Oznacz jako niedostępna</button>
                                     :
-                                    <button onClick={(e) => changeState(book, e)}>Oznacz jako dostępna</button>
+                                    <button className="optionBtn" onClick={(e) => changeState(book, e)}>Oznacz jako dostępna</button>
                                     } 
                                 </div> : 
-                                <div>
+                                <div >
                                     {book.available ?
-                                    <div>
-                                        <button onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
-                                        <a className="btn btn-primary" href={"/books/"+book.bookID} target="_blank">Pokaż więcej</a>
+                                    <div className="book-buttons">
+                                        <div>
+                                            <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
+                                        </div>
+                                        <div>
+                                             <a className="showMoreButton" href={"/books/"+book.bookID} target="_blank">Pokaż więcej</a>
+                                        </div>                         
                                     </div>
                                     :
                                     <p>Książka jest niedostępna</p>
@@ -125,12 +121,9 @@ const Books = (props) => {
                                 </div>
                                 
                             }
-                            
-                            
-                            {/* <BookModal book={book} /> */}
                         </div>
                     </div>
-                    
+   
                 )
             })}
         </div>

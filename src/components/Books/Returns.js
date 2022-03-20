@@ -23,9 +23,9 @@ const Returns = () => {
     }, [])
 
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarAdmin/>
-                <div className="my-books-layout">
+                <div className="requestsLayout">
                 {
                 myBooks.map((book) => {
                     if (book.fine < 0 ) {
@@ -33,13 +33,13 @@ const Returns = () => {
                     }
                     return (
                         
-                        <div key={book.id} className="my-books">
+                        <div key={book.id} className="request">
                             <div>
                                 <img width="140" height="150" src={book.image} alt={book.title} />
                             </div>
                             <div>
                                 <h3>{book.title}</h3>
-                                <h2>{book.userEmail}</h2>
+                                <h4>{book.userEmail}</h4>
                                 <AddressModal book={book}/>
                                 {book.fine > 0 && <h3>Kara: {book.fine} zł</h3>}
                             </div>

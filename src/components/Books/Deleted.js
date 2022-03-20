@@ -56,14 +56,13 @@ const Deleted = () => {
     }
 
     const deleteBook = ({userEmail, title}) => {
-        console.log('dupa')
         db.collection('deleted').doc(userEmail + ' ' + title).delete()
     }
         
     return (
-        <div className="dashboard-content">
+        <div >
             <NavbarAdmin/>
-                <div className="my-books-layout">
+                <div className="requestsLayout">
                 {
                 myBooks.map((book) => {
                     const dni = moment(book.deleteDate).diff(todayDate, 'days')*-1
@@ -72,9 +71,9 @@ const Deleted = () => {
                     }
                     return (
                         
-                        <div key={book.id} className="my-books">
+                        <div key={book.id} className="request">
                             <div>
-                                <h1>{dni}</h1>
+                                <h3>Od usunięcia: {dni}</h3>
                                 <img width="140" height="150" src={book.image} alt={book.title} />
                             </div>
                             <div>
@@ -83,7 +82,7 @@ const Deleted = () => {
                                 <p>Od: {book.startDate}</p>
                                 <p>Do: {book.endDate}</p>
                                 <AddressModal book={book}/>
-                                <button onClick={() => restoreBook(book)}>Przywróć</button>
+                                <button className="optionBtn" onClick={() => restoreBook(book)}>Przywróć</button>
                             </div>
                         </div>
                     )

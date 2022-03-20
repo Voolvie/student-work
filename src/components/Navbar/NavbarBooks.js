@@ -3,7 +3,7 @@ import {DropdownButton, Dropdown } from "react-bootstrap"
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { CategoryContext } from "../../context/CategoryContext";
-import '../style.css'
+import '../../styles/styles.scss'
 import SearchBar from "./SearchBar";
 
 const NavbarBooks = () => {

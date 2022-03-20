@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../singleBooks.css"
 import Modal from "react-modal"
 import { Form, Button } from "react-bootstrap";
 import { db } from "../../firebase";
@@ -26,7 +25,7 @@ Modal.setAppElement('#root')
         content: {
             width: '50%',
             textAlign: 'center',
-            backgroundColor: '#46344E',
+            backgroundColor: '#C07100',
             color: 'white',
             top: '50%',
             left: '50%',
@@ -59,10 +58,9 @@ Modal.setAppElement('#root')
 
         }
     }
-    console.log(currentUser.displayName)
     return (
         <div>
-            <button
+            <button className="cartButton"
             onClick={() => setModalIsOpen(true)}
             >Dodaj recenzję</button>
             <Modal

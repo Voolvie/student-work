@@ -19,36 +19,6 @@ const UpdateProfile = () => {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
-    // const [users, setUsers] = useState('')
-    
-
-    // useEffect(() => {
-    //  const getUsersFromFirestore = []
-    //  const subscriber = db.collection("users").onSnapshot((querySnapshot) => {
-    //      querySnapshot.forEach((doc) => {
-    //          getUsersFromFirestore.push({...doc.data(), key: doc.id})
-             
-    //      })
-    //          setUsers(getUsersFromFirestore)
-    //          setLoading(false)
-    //  })
-    //  return () => subscriber()   
-    // }, [])
-    // if (loading) {
-    //     return <h1>loading</h1>
-    // }
-        
-    
-        // async function deleteUser() {
-        //     const user = auth().currentUser
-        //     user.delete().then(() => {
-        //         history.push('/')
-        //         console.log("user deleted")
-        //     }).catch((error) => { 
-        //         console.log(error)
-        //     })
-        // }
-
         function handleSubmit (e) {
         e.preventDefault()
 
@@ -90,63 +60,47 @@ const UpdateProfile = () => {
     }
     
     return (
-        <div className="dashboard-content">
-        {/* <div>
-            {users.length > 0 ? (
-             users.map((user) =>
-              <div key={user.key}>
+        <div >
 
-                  <h1>{user.email}</h1>
-                  <h2>{user.username}</h2>
-                  
-            </div>))
-            : (
-                <h1> no users</h1>
-            )}
-        </div>
-        <div>
-            {currentUser.uid}
-        </div> */}
         {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <NavbarUser />}
-        <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
-         <div className="w-100" style={{ maxWidth: "400px"}}>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">Update Profile</h2>
-                    {error && <Alert variant="danger">{error} </Alert>}
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id="name">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" onChange={(e) => setDisplayName(e.target.value)} />
-                        </Form.Group>
-                         <Form.Group id="phone">
-                        <Form.Label>Phone Number</Form.Label>
-                        <Form.Control type="text"  onChange={(e) => setPhoneNumber(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} defaultValue={currentUser.email} />
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group id="password-confirm">
-                            <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control type="password" onChange={(e) => setPasswordConfirm(e.target.value)} />
-                        </Form.Group>
-                        <Button disabled={loading} className="w-100 " type="submit">Update</Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                <Link to='/'> Cancel</Link>
+        <div className="profilie-content">
+            <div className="singleBook-left"></div>
+            <div className="myBooks-main">
+            <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
+                <div className="w-100" style={{ maxWidth: "400px"}}>
+                    <Card>
+                        <Card.Body>
+                            <h2 className="text-center mb-4">Update Profile</h2>
+                            {error && <Alert variant="danger">{error} </Alert>}
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group id="name">
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control type="text" onChange={(e) => setDisplayName(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group id="email">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} defaultValue={currentUser.email} />
+                                </Form.Group>
+                                <Form.Group id="password">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group id="password-confirm">
+                                    <Form.Label>Password Confirmation</Form.Label>
+                                    <Form.Control type="password" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                                </Form.Group>
+                                <Button disabled={loading} className="w-100 " type="submit">Update</Button>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                    <div className="w-100 text-center mt-2">
+                        <Link to='/'> Cancel</Link>
+                    </div>
+                    </div>
+                </Container>
             </div>
-            <div className="w-100 text-center mt-2">
-                <Button >Delete user</Button>
-            </div>
-            </div>
-        </Container>
+            <div className="singleBook-right"></div>
+        </div>
         </div>
     )
 }

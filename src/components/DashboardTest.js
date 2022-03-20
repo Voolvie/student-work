@@ -8,7 +8,7 @@ export const DashboardTest = () => {
 
     return (
         
-        <div className="dashboard-content">
+        <div >
             <NavbarMain />
             <Books />
         </div>

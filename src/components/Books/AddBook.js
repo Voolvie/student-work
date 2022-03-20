@@ -68,70 +68,75 @@ const AddBook = () => {
     
 
     return (
-        <div className="dashboard-content">
+            <div >
             {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <Redirect to="/" />}
-
-            <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
-            <div className="w-100" style={{ maxWidth: "400px"}}>
-                <Card>
-                    <Card.Header as="h3" className="text-center mb-4">Dodaj książkę</Card.Header>
-                    <Card.Body>
-                        <Form onSubmit={handleSubmit}>
+            <div className="profilie-content">
+                <div className="singleBook-left"></div>
+                <div className="myBooks-main">
+                <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
+             <div className="w-100" style={{ maxWidth: "400px"}}>
+                 <Card>
+                     <Card.Header as="h3" className="text-center mb-4">Dodaj książkę</Card.Header>
+                     <Card.Body>
+                         <Form onSubmit={handleSubmit}>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Tytuł</Form.Label>
+                                 <Form.Control type="text"  onChange={(e) => setTitle(e.target.value)} required />
+                             </Form.Group>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Autor</Form.Label>
+                                 <Form.Control type="text"  onChange={(e) => setAuthor(e.target.value)} required />
+                             </Form.Group>
                             <Form.Group className="mb-3">
-                                <Form.Label>Tytuł</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setTitle(e.target.value)} required />
+                                 <Form.Label>Wydawnictwo</Form.Label>
+                                 <Form.Control type="text"  onChange={(e) => setPublish(e.target.value)}  required />
                             </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Autor</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setAuthor(e.target.value)} required />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Wydawnictwo</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setPublish(e.target.value)}  required />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Kategoria</Form.Label>
-                                <Form.Select type="text"  onChange={(e) => setCategory(e.target.value)}  required >
-                                <option value="Biografia">Biografia</option>
-                                <option value="Historia">Historia</option>
-                                <option value="Literatura młodzieżowa">Literatura młodzieżowa</option>
-                                <option value="Powieść">Powieść</option>
-                                <option value="Dla dzieci">Dla dzieci</option>
-                                <option value="Horror">Horror</option>
-                                <option value="Literatura obyczajowa">Literatura obyczajowa</option>
-                                <option value="Romans">Romans</option>
-                                <option value="Filozofia">Filozofia</option>
-                                <option value="Lektury">Lektury</option>
-                                <option value="Literatura piękna">Literatura piękna</option>
-                                <option value="Sensacja Thriller">Sensacja Thriller</option>
-                                </Form.Select>
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Język</Form.Label>
-                                <Form.Select type="text"  onChange={(e) => setLanguage(e.target.value)}  required >
-                                <option value="Polski">Polski</option>
-                                <option value="Angielski">Angielski</option>
-                                <option value="Niemiecki">Niemiecki</option>
-                                </Form.Select>
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Opis</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setDescription(e.target.value)}  required />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Id książki</Form.Label>
-                                <Form.Control type="text"  onChange={(e) => setBookID(e.target.value)}  required />
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Zdjecie ksiazki</Form.Label>
-                                <Form.Control type="file"  onChange={onFileChange} />
-                            </Form.Group>
-                            <Button disabled={loading} className="w-100 " type="submit">Update</Button>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </div>
-            </Container>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Kategoria</Form.Label>
+                                 <Form.Select type="text"  onChange={(e) => setCategory(e.target.value)}  required >
+                                 <option value="Biografia">Biografia</option>
+                                 <option value="Historia">Historia</option>
+                                 <option value="Literatura młodzieżowa">Literatura młodzieżowa</option>
+                                 <option value="Powieść">Powieść</option>
+                                 <option value="Dla dzieci">Dla dzieci</option>
+                                 <option value="Horror">Horror</option>
+                                 <option value="Literatura obyczajowa">Literatura obyczajowa</option>
+                                 <option value="Romans">Romans</option>
+                                 <option value="Filozofia">Filozofia</option>
+                                 <option value="Lektury">Lektury</option>
+                                 <option value="Literatura piękna">Literatura piękna</option>
+                                 <option value="Sensacja Thriller">Sensacja Thriller</option>
+                                 </Form.Select>
+                             </Form.Group>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Język</Form.Label>
+                                 <Form.Select type="text"  onChange={(e) => setLanguage(e.target.value)}  required >
+                                 <option value="Polski">Polski</option>
+                                 <option value="Angielski">Angielski</option>
+                                 <option value="Niemiecki">Niemiecki</option>
+                                 </Form.Select>
+                             </Form.Group>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Opis</Form.Label>
+                                 <Form.Control type="text"  onChange={(e) => setDescription(e.target.value)}  required />
+                             </Form.Group>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Id książki</Form.Label>
+                                 <Form.Control type="text"  onChange={(e) => setBookID(e.target.value)}  required />
+                             </Form.Group>
+                             <Form.Group className="mb-3">
+                                 <Form.Label>Zdjecie ksiazki</Form.Label>
+                                 <Form.Control type="file"  onChange={onFileChange} />
+                             </Form.Group>
+                             <Button disabled={loading} className="w-100 " type="submit">Update</Button>
+                         </Form>
+                     </Card.Body>
+                 </Card>
+             </div>
+             </Container>
+                </div>
+                <div className="singleBook-right"></div>
+            </div>   
         </div>
     )
 }

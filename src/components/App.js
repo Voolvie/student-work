@@ -1,7 +1,6 @@
 import React from "react";
 import Signup from "./Auth/Signup";
 import { AuthProvider } from "../context/AuthContext";
-// import { CategoryProvider } from "../context/CategoryContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Dashboard } from "./Dashboard";
 import { DashboardTest } from "./DashboardTest";
@@ -14,7 +13,6 @@ import AddBook from "./Books/AddBook";
 import Cart from "./Books/Cart";
 import MyBooks from "./Books/MyBooks";
 import Requests from "./Books/Requests";
-import { Test } from "./Test"
 import { CategoryProvider } from "../context/CategoryContext";
 import RentedBooks from "./Books/RentedBooks";
 import Returns from "./Books/Returns";
@@ -26,8 +24,6 @@ import Deleted from "./Books/Deleted";
 
 const App = () => {
   return (
-    // <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
-      // <div className="w-100" style={{ maxWidth: "400px"}}>
       <div>
         <Router>
           <AuthProvider>
@@ -45,18 +41,16 @@ const App = () => {
                 <PrivateRoute path='/contact' component={Contact} />
                 <PrivateRoute path='/contact-admin' component={ContactAdmin} />
                 <PrivateRoute path='/contacts/:id' component={SingleContact} />
-                <PrivateRoute path='/books/:id' component={SingleBookPage} />
+                <Route path='/books/:id' component={SingleBookPage} />
                 <PrivateRoute path='/deleted' component={Deleted} />
                 <Route path='/signup' component={Signup}/>
                 <Route path='/login' component={Login}/>
                 <Route path='/forgot-password' component={ForgotPassword}/>
                 <Route path='/main' component={DashboardTest}/>
-                <Route path='/test' component={Test}/>
               </Switch>
               </CategoryProvider>
           </AuthProvider>
         </Router>
-        {/* <Test /> */}
       </div>
 
   )
