@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { FilterContext } from '../../context/FilterContext';
 import { CategoryContext } from '../../context/CategoryContext';
 
-function SearchBarUsers ({ placeholder, data }) {
+function SearchBarRented ({ placeholder, data }) {
   
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -18,7 +18,7 @@ function SearchBarUsers ({ placeholder, data }) {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
-      return value.displayName.toLowerCase().includes(searchWord.toLowerCase());
+      return value.userEmail.toLowerCase().includes(searchWord.toLowerCase());
     });
     if (searchWord === "") {
       setFilteredData([]);
@@ -34,7 +34,7 @@ function SearchBarUsers ({ placeholder, data }) {
     setWordEntered("");
   }
   const setFilterButton = (value) => {
-    setFilter(value.displayName)
+    setFilter(value.userEmail)
     clearInput()
 
   }
@@ -60,7 +60,7 @@ function SearchBarUsers ({ placeholder, data }) {
         <div className="dataResult">
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-                  <button className='buttonOnclick' onClick={() => setFilterButton(value)}>{value.displayName}</button>
+                  <button className='buttonOnclick' onClick={() => setFilterButton(value)}>{value.userEmail}</button>
             )
           })}
         </div>
@@ -69,4 +69,4 @@ function SearchBarUsers ({ placeholder, data }) {
   );
 }
 
-export default SearchBarUsers;
+export default SearchBarRented;

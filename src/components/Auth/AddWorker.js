@@ -5,14 +5,15 @@ import { Link, useHistory } from "react-router-dom"
 
 
 import { db }  from "../../firebase"
+import NavbarAdmin from "../Navbar/NavbarAdmin"
 
-export default function Signup() {
+export default function AddWorker() {
   const [displayName, setDisplayName] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  const { signup } = useAuth()
+  const { signup, currentUser } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -29,15 +30,15 @@ export default function Signup() {
       const user = res.user
       await user.updateProfile({displayName: displayName})
       .then(() => {
-        db.collection('users').doc(user.uid).set({
+        db.collection('workers').doc(user.uid).set({
         uid: user.uid,
         displayName: displayName,
-        phoneNumber: phoneNumber,
         email,
         })
       })
       alert('Utworzono konto')
-      history.push("/")
+      history.push("/add-worker")
+      console.log(currentUser)
     } catch {
       setError("Failed to create an account")
     } 
@@ -45,13 +46,16 @@ export default function Signup() {
   }
 
   return (
+    <div>
+
+    <NavbarAdmin />
     <div className="loginLayout">
     <div className="signupContainer">
     <Container>
       <div >
       <Card className="signupCard">
         <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h2 className="text-center mb-4">Dodaj pracownika</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="text">
@@ -71,17 +75,16 @@ export default function Signup() {
               <Form.Control type="password" onChange={(e) => setPasswordConfirm(e.target.value)} required/>
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Sign Up
+              Dodaj
             </Button>
           </Form>
         </Card.Body>
-            <div className="auth">
-        Already have an account? <Link to="/login">Log In</Link>
-      </div>
       </Card>
     </div>
     </Container>
     </div>
+    </div>
+          
     </div>
   )
 }

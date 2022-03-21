@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap'
 import { useAuth } from "../../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-import "../style.css"
+import "../../styles/styles.scss"
 
 
 export const Login = () => {
@@ -29,9 +29,10 @@ export const Login = () => {
     
 
     return (
-        <div className="dashboard-content">
-         <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
-            <div className="w-100" style={{ maxWidth: "400px"}}>
+        <div className="loginLayout">
+        <div className="loginContainer">
+         <Container >
+            <div >
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Log in</h2>
@@ -50,13 +51,15 @@ export const Login = () => {
                     <div className="w-100 text-center mt-3">
                         <Link to='/forgot-password'>Forgot password?</Link>
                     </div>
+                <div className="auth">
+                    Need an account? <Link to='/signup'> Sign up </Link>
+                </div>
                 </Card.Body>
             </Card>
-            <div className="auth">
-                Need an account? <Link to='/signup'> Sign up </Link>
-            </div>
+
             </div>
             </Container>
+        </div>
         </div>
     )
 }

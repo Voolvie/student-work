@@ -1,0 +1,28 @@
+.loginLayout {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;    
+    margin: auto;
+    border-radius: 10px;
+    background-color: grey;
+    box-shadow:  0 0 1em black;
+    
+}
+.signupCard.card{
+    margin-top: 30px;
+}
+.cardForgot.card {
+    margin-top: 110px;
+}
+.auth {
+    text-align: center;
+}
+.card {
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+}

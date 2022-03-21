@@ -116,7 +116,11 @@ const Books = (props) => {
                                         </div>                         
                                     </div>
                                     :
-                                    <p>Książka jest niedostępna</p>
+                                    
+                                    <div>
+                                        <p>Książka jest niedostępna</p>
+                                        <a className="showMoreButton" href={"/books/"+book.bookID} target="_blank">Pokaż więcej</a>
+                                    </div>  
                                     } 
                                 </div>
                                 

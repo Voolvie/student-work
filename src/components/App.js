@@ -21,6 +21,9 @@ import Contact from "./Books/Contact";
 import ContactAdmin from "./Books/ContactAdmin";
 import SingleContact from "./Books/SingleContact";
 import Deleted from "./Books/Deleted";
+import AddWorker from "./Auth/AddWorker";
+import UsersList from "./Books/UsersList";
+import WorkersList from "./Books/WorkersList";
 
 const App = () => {
   return (
@@ -41,6 +44,9 @@ const App = () => {
                 <PrivateRoute path='/contact' component={Contact} />
                 <PrivateRoute path='/contact-admin' component={ContactAdmin} />
                 <PrivateRoute path='/contacts/:id' component={SingleContact} />
+                <PrivateRoute path='/add-worker' component={AddWorker} />
+                <PrivateRoute path='/users-list' component={UsersList} />
+                <PrivateRoute path='/workers-list' component={WorkersList} />
                 <Route path='/books/:id' component={SingleBookPage} />
                 <PrivateRoute path='/deleted' component={Deleted} />
                 <Route path='/signup' component={Signup}/>

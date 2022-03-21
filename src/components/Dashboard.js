@@ -13,7 +13,7 @@ export const Dashboard = (data) => {
     return (
 
         <div >
-            {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <NavbarUser/>}
+            {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" || currentUser.uid ==="7mxeIPKsrIOEOdbakRrR7DsV6bC2" ? <NavbarAdmin /> : <NavbarUser/>}
             <Books />
         </div>
 

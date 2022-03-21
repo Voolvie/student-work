@@ -56,7 +56,12 @@ const SingleBookPage = (props) => {
                                 <h4>{book.title}</h4>
                                 <h5>{book.author}</h5>
                                 <p>{book.category}</p>
-                                <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>
+                                {book.availavble ? 
+                                <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>                
+                                :
+                                <p>Książka jest niedostępna</p>
+                                }
+                                
                             </div>
                          </div>
                          <div className="singleBook-description">

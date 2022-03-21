@@ -9,7 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 import moment from "moment";
 import emailjs from "emailjs-com"
 
-import SearchBarUsers from "../Navbar/SearchBarUsers";
+import SearchBarRented from "../Navbar/SearchBarRented";
 
 import { CategoryContext } from "../../context/CategoryContext";
 
@@ -106,7 +106,7 @@ const RentedBooks = () => {
              }
             <div className="bookFunctions">
                 <h5>Wyszukaj użytkownika</h5>
-                <SearchBarUsers data={books}/>
+                <SearchBarRented data={books}/>
             </div>
              </div>
             

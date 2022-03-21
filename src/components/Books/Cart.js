@@ -33,6 +33,8 @@ const Cart = () => {
     const dateEnd = moment(state.endDate).format('DD MMM, YYYY')
     const dni = moment(dateEnd).diff(dateStart, 'days')
 
+    const current = new Date()
+
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [phoneNumber, setPhoneNumber] = useState(0)
@@ -87,7 +89,10 @@ const Cart = () => {
     }
 
     const makeRequest = () => {
-        const booksCollectionRef = db.collection('cart').where("userID", "==", currentUser.uid)
+        if (name === "" || surname === "" || phoneNumber === "" || street === "" || postcode === "" || city === "" || dateStart === "" || dateEnd === "" ) {
+            alert('Uzupełnij wszystko!')
+        } else {
+            const booksCollectionRef = db.collection('cart').where("userID", "==", currentUser.uid)
         const getCart = async () => {
         const data = await getDocs(booksCollectionRef)
         setCart(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
@@ -114,7 +119,6 @@ const Cart = () => {
                 }
             })
         })
-
         booksCollectionRef.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 doc.ref.delete()
@@ -122,7 +126,7 @@ const Cart = () => {
         })
         alert('Twoja prośba o wypożyczenie została przesłana!')
         history.push('/')
-
+        }     
     }
 
     return (
@@ -160,33 +164,33 @@ const Cart = () => {
                         <div className="rent1">
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Imie</Form.Label>
-                            <Form.Control type="text" placeholder="Imie" onChange={(e) => setName(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Imie" onChange={(e) => setName(e.target.value)} required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Nazwisko</Form.Label>
-                            <Form.Control type="text" placeholder="Nazwisko" onChange={(e) => setSurname(e.target.value)} />
+                            <Form.Control type="text" placeholder="Nazwisko" onChange={(e) => setSurname(e.target.value)} required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Telefon</Form.Label>
-                            <Form.Control type="number" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <Form.Control type="number" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} required/>
                         </Form.Group>
                         </div>
                         <div className="rent2">
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Ulica i nr domu</Form.Label>
-                            <Form.Control type="text" placeholder="Ulica" onChange={(e) => setStreet(e.target.value)} />
+                            <Form.Control type="text" placeholder="Ulica" onChange={(e) => setStreet(e.target.value)} required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Kod pocztowy</Form.Label>
-                            <Form.Control type="text" placeholder="Kod pocztowy" onChange={(e) => setPostcode(e.target.value)} />
+                            <Form.Control type="text" placeholder="Kod pocztowy" onChange={(e) => setPostcode(e.target.value)} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Miasto</Form.Label>
-                            <Form.Select type="text"  onChange={(e) => setCity(e.target.value)}>
+                            <Form.Select type="text"  onChange={(e) => setCity(e.target.value)} required>
                                 <option value="Gliwice">Gliwice</option>
                                 <option value="Zabrze">Zabrze</option>
                                 <option value="Bytom">Bytom</option>
@@ -198,6 +202,7 @@ const Cart = () => {
                         <Form>
                             <h2>Wybierz termin</h2>
                         <DateRangeInput
+                        minBookingDate = {current}
                         onDatesChange={data => dispatch({type: 'dateChange', payload: data})}
                         onFocusChange={focusedInput => dispatch({type: 'focusChange', payload: focusedInput})}
                         startDate={state.startDate} // Date or null

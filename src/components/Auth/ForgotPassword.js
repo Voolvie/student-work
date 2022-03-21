@@ -27,10 +27,11 @@ const ForgotPassword = () => {
   }
 
   return (
-    <div className="dashboard-content">
-    <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
-      <div className="w-100" style={{ maxWidth: "400px"}}>
-      <Card>
+    <div className="loginLayout">
+    <div className="loginContainer">
+    <Container >
+      <div >
+      <Card className="cardForgot">
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -47,13 +48,15 @@ const ForgotPassword = () => {
           <div className="w-100 text-center mt-3">
             <Link to="/login">Login</Link>
           </div>
-        </Card.Body>
-      </Card>
-      <div className="auth">
+          <div className="auth">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>
+        </Card.Body>
+      </Card>
+      
     </div>
     </Container>
+    </div>
     </div>
   )
 }

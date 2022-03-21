@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Alert, Container } from 'react-bootstrap'
 import { Link, useHistory } from "react-router-dom";
 import  { useAuth } from '../context/AuthContext'
 import NavbarUser from "./Navbar/NavbarUser";
 import NavbarAdmin from "./Navbar/NavbarAdmin"
- 
+import { deleteUser } from "firebase/auth";
+import { db } from "../firebase";
+import { getDocs } from "firebase/firestore";
 
 
 export const Profile = () => {
+    const [myBooks, setMyBooks] = useState([])
     const [error, setError] = useState('')
     const { currentUser, logout } = useAuth()
     const history = useHistory()
@@ -20,6 +23,28 @@ export const Profile = () => {
         setError("Failed to log out")
         }
     }
+    const deleteAccount = () => {
+        if (myBooks.length !== 0 ) {
+            alert("Aby usunąć konto musisz oddać książki!")
+        } else {
+        deleteUser(currentUser).then(() => {
+            alert('Konto usunięte')
+        }).catch((error) => {
+            alert(error)
+        })
+        }
+    }
+
+    useEffect(() => {
+            const booksCollectionRef = db.collection('users-books').where("userEmail", "==", currentUser.email)
+            const getMyBooks = async () => {
+            const data = await getDocs(booksCollectionRef)
+            setMyBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+            }
+        getMyBooks()
+
+    }, [])
+
 
     return (
     <div >
@@ -27,7 +52,7 @@ export const Profile = () => {
         <div className="profilie-content">
             <div className="singleBook-left"></div>
             <div className="myBooks-main">
-            <Container className="d-flex align-items-center justify-content-center" style={{minHeight: "100vh"}}>
+            <Container className="d-flex align-items-center justify-content-center" >
             <div className="w-100" style={{ maxWidth: "400px"}}>
                 <Card>
                     <Card.Body>
@@ -37,11 +62,9 @@ export const Profile = () => {
                         <div><strong>Email:</strong>{currentUser.email}</div>
                         <Link to='/update-profile' className="btn btn-primary w-100 mt-3">Update profile</Link>
                     </Card.Body>
-
+                    
                 </Card>
-                <div className="w-100 text-center mt-2">
-                    <Button variant="link" onClick={handleLogout}>Log out</Button>
-                </div>
+                <Button onClick={(deleteAccount)}>Usuń konto</Button>
                 </div>
                 </Container>
             </div>

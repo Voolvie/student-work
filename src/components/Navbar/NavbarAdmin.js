@@ -40,15 +40,23 @@ const NavbarAdmin = () => {
                     <a href="/requests">Prośby wypożyczenia</a>
                     <a href="/rented-books">Wypożyczone książki</a>
                     <a href="/returns">Zwroty książek</a>
+                    <a href="/deleted">Usunięte</a>
                 </div>
             </div>
-            <a href="/deleted">Usunięte</a>
             <a href="/contact-admin">Pomoc</a>
             <div className="dropdown">
-                <button className="dropBtn">Mój profil</button>
+                <button className="dropBtn">Opcje</button>
                 <div className="dropdown-content">
-                    <a href="/profile">Profil</a>
+                    <a href="/profile">Mój profil</a>
                     <a href="/update-profile">Aktualizuj profil</a>
+                    {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" &&
+                    <div>
+                    <a href="/add-worker">Dodaj pracownika</a>
+                    <a href="/users-list">Lista użytkowników</a>
+                    <a href="/workers-list">Lista pracowników</a>
+                    </div>
+                    }
+                    
                 </div>
             </div>
             </div>
