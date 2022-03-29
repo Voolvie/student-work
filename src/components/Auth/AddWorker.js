@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../context/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 
 import { db }  from "../../firebase"
@@ -9,11 +9,10 @@ import NavbarAdmin from "../Navbar/NavbarAdmin"
 
 export default function AddWorker() {
   const [displayName, setDisplayName] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  const { signup, currentUser } = useAuth()
+  const { signup } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -37,8 +36,7 @@ export default function AddWorker() {
         })
       })
       alert('Utworzono konto')
-      history.push("/add-worker")
-      console.log(currentUser)
+      history.push("/")
     } catch {
       setError("Failed to create an account")
     } 
@@ -59,7 +57,7 @@ export default function AddWorker() {
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="text">
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Nazwa użytkownika</Form.Label>
               <Form.Control type="text" onChange={(e) => setDisplayName(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="email">
@@ -67,11 +65,11 @@ export default function AddWorker() {
               <Form.Control type="text" onChange={(e) => setEmail(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Hasło</Form.Label>
               <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Label>Potwierdź hasło</Form.Label>
               <Form.Control type="password" onChange={(e) => setPasswordConfirm(e.target.value)} required/>
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">

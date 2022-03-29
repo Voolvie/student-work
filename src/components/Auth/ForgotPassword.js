@@ -33,7 +33,7 @@ const ForgotPassword = () => {
       <div >
       <Card className="cardForgot">
         <Card.Body>
-          <h2 className="text-center mb-4">Password Reset</h2>
+          <h2 className="text-center mb-4">Reset hasła</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -42,14 +42,14 @@ const ForgotPassword = () => {
               <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} required />
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Reset Password
+              Zresetuj hasło
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
-            <Link to="/login">Login</Link>
+            <Link to="/login">Zaloguj się</Link>
           </div>
           <div className="auth">
-        Need an account? <Link to="/signup">Sign Up</Link>
+        Potrzebujesz konta? <Link to="/signup">Zarejestruj się</Link>
       </div>
         </Card.Body>
       </Card>

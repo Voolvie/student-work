@@ -1,26 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {DropdownButton, Dropdown } from "react-bootstrap"
-import { useHistory } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import { CategoryContext } from "../../context/CategoryContext";
 import '../../styles/styles.scss'
-import SearchBar from "./SearchBar";
 
 const NavbarBooks = () => {
-    const [error, setError] = useState('')
-    const { currentUser, logout} = useAuth()
-    const history = useHistory()
     const [category, setCategory] = useContext(CategoryContext)
 
-     async function handleLogout() {
-        setError('')
-        try {
-        await logout()
-        history.push("/main")
-        } catch {
-        setError("Failed to log out")
-        }
-    }
     
     return (
         <div>

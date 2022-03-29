@@ -1,16 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "../../styles/styles.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import { useAuth } from "../../context/AuthContext";
-import { FilterContext } from '../../context/FilterContext';
 import { CategoryContext } from '../../context/CategoryContext';
 
 function SearchBarUsers ({ placeholder, data }) {
   
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  const { currentUser } = useAuth()
   const [filter, setFilter] = useContext(CategoryContext)
 
 

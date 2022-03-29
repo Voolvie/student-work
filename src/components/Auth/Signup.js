@@ -34,6 +34,7 @@ export default function Signup() {
         displayName: displayName,
         phoneNumber: phoneNumber,
         email,
+        isAdmin: false
         })
       })
       alert('Utworzono konto')
@@ -51,11 +52,11 @@ export default function Signup() {
       <div >
       <Card className="signupCard">
         <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h2 className="text-center mb-4">Zarejestruj się</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="text">
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Nazwa użytkownika</Form.Label>
               <Form.Control type="text" onChange={(e) => setDisplayName(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="email">
@@ -63,20 +64,20 @@ export default function Signup() {
               <Form.Control type="text" onChange={(e) => setEmail(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Hasło</Form.Label>
               <Form.Control type="password" onChange={(e) => setPassword(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Label>Powierdzenie hasła</Form.Label>
               <Form.Control type="password" onChange={(e) => setPasswordConfirm(e.target.value)} required/>
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
-              Sign Up
+              Zarejestruj się
             </Button>
           </Form>
         </Card.Body>
             <div className="auth">
-        Already have an account? <Link to="/login">Log In</Link>
+        Posiadasz już konto? <Link to="/login">Zaloguj się</Link>
       </div>
       </Card>
     </div>

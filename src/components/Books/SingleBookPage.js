@@ -1,15 +1,19 @@
 import React , {useState, useEffect} from "react";
 import NavbarUser from "../Navbar/NavbarUser";
+import NavbarMain from "../Navbar/NavbarMain";
 import { db } from "../../firebase";
-import { getDocs } from "firebase/firestore"
+import { arrayRemove, getDocs } from "firebase/firestore"
 import { useAuth } from "../../context/AuthContext";
 import ReviewModal from "../Modals/ReviewModal";
 import "../../styles/styles.scss"
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import NavbarAdmin from "../Navbar/NavbarAdmin";
 
 const SingleBookPage = (props) => {
     const [myBooks, setMyBooks] = useState([])
     const {currentUser} = useAuth()
+    const history = useHistory()
+    const [isDelete, setIsDelete] = useState(false)
 
     useEffect(() => {
             const booksCollectionRef = db.collection('books').where("bookID", "==", props.match.params.id)
@@ -18,7 +22,7 @@ const SingleBookPage = (props) => {
             setMyBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
             }
         getMyBooks()
-    }, [])
+    }, [isDelete])
 
         const addToCart = ({title, author, bookID, image}) => {
         if (currentUser != null) {
@@ -35,10 +39,32 @@ const SingleBookPage = (props) => {
         }
         
     }
+    const deleteBook = ({title}) => {
+        db.collection('books').doc(title).delete()
+        alert(`Usunięto książkę ` + title)
+        history.push('/')
+    }
+    const deleteReview = ({review, title}, i) => {
+    db.collection('books').doc(title).update({
+        review: arrayRemove(`${review[i]}`)
+    })
+    alert("Usunięto recenjzę")
+    setIsDelete(!isDelete)
+    }
     
     return (
         <div>
-            <NavbarUser/>
+            {
+                (currentUser.uid === process.env.REACT_APP_ADMIN_ID) ? <NavbarAdmin />
+                :
+                <div>
+                {currentUser !== null ? <NavbarUser/>
+                        :
+                        <NavbarMain/>
+                }
+                </div>
+            }
+            
                 <div className="singleBook-layout">
                     <div className="singleBook-left">
 
@@ -56,10 +82,12 @@ const SingleBookPage = (props) => {
                                 <h4>{book.title}</h4>
                                 <h5>{book.author}</h5>
                                 <p>{book.category}</p>
-                                {book.availavble ? 
+                                {book.available ? 
                                 <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>                
                                 :
-                                <p>Książka jest niedostępna</p>
+                                <div>
+                                    <button className="optionBtn" onClick={(e) => deleteBook(book)}>Usuń</button>
+                                </div>
                                 }
                                 
                             </div>
@@ -70,9 +98,13 @@ const SingleBookPage = (props) => {
                          </div>
                           <div className="singleBook-description">
                               <h2>Recenzje </h2>
-                              {book.review ? <div>{book.review.map((review) => {
-                                return <div className="singleBook-review">
+                              {book.review ? <div>{book.review.map((review, i) => {
+                                return <div className="singleBook-review" >
                                     <p>{review}</p>
+                                    {
+                                        currentUser.uid === process.env.REACT_APP_ADMIN_ID &&
+                                        <button onClick={(e) => deleteReview(book ,i)}>Usuń</button>
+                                    }
                                 </div>
                             })
                             } 
@@ -82,7 +114,7 @@ const SingleBookPage = (props) => {
                             
                          </div>
                           <div className="singleBook-description">
-                              {currentUser !== null && <ReviewModal book={book}/>}                     
+                              {(currentUser !== null && currentUser.uid !== process.env.REACT_APP_ADMIN_ID ) && <ReviewModal book={book}/>}                     
                          </div>
                         </div>
                     )

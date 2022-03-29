@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import "../../styles/styles.scss"
@@ -70,20 +70,14 @@ const Cart = () => {
 
     const calcultePrice = () => {
         
-        if(dni > 14 && dni <  30) {
+        if(dni > 14) {
+            let priceCalc = dni - 14
             setPrice({
-                book: cart.length * 10
+                book: cart.length * 0.10 * priceCalc,
+                delivery: cart.length * 5
             })
-        } else if (dni > 30) {
-            setPrice({
-                book: cart.length * 20
-            })  
         }
 
-        setPrice((prevState) => ({
-             ...prevState,
-            delivery: 10,
-        }))
 
         setShowPrice(true)
     }
@@ -174,7 +168,7 @@ const Cart = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Telefon</Form.Label>
-                            <Form.Control type="number" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} required/>
+                            <Form.Control type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} required/>
                         </Form.Group>
                         </div>
                         <div className="rent2">
@@ -205,16 +199,16 @@ const Cart = () => {
                         minBookingDate = {current}
                         onDatesChange={data => dispatch({type: 'dateChange', payload: data})}
                         onFocusChange={focusedInput => dispatch({type: 'focusChange', payload: focusedInput})}
-                        startDate={state.startDate} // Date or null
-                        endDate={state.endDate} // Date or null
-                        focusedInput={state.focusedInput} // START_DATE, END_DATE or null
+                        startDate={state.startDate} 
+                        endDate={state.endDate} 
+                        focusedInput={state.focusedInput} 
                         />
                         <Button onClick={calcultePrice}>Oblicz cenę</Button>
                         {showPrice ?
                         <div>
                         <h3>Cena za wypożyczenie to {price.book} zł</h3>
-                        <h3>Cena za dostawę to {price.delivery}</h3>
-                        <h3>Łącznie do zapłaty {(price.book + price.delivery)}</h3>
+                        <h3>Cena za dostawę to {price.delivery} zł</h3>
+                        <h3>Łącznie do zapłaty {(price.book + price.delivery)} zł</h3>
                         <p>Płatność kartą lub gotówką przy odbiorze zamówienia</p>
                         <Button variant="primary" type="submit" onClick={makeRequest}>
                             Wypożycz

@@ -1,10 +1,7 @@
 import React , {useState, useEffect, useContext} from "react";
-import NavbarUser from "../Navbar/NavbarUser";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
-import { useAuth } from "../../context/AuthContext";
 import "../style.css"
-import AddressModal from "../Modals/AddressModal";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
 import { CategoryContext } from "../../context/CategoryContext";
 import SearchBarUsers from "../Navbar/SearchBarUsers";
@@ -12,8 +9,9 @@ import SearchBarUsers from "../Navbar/SearchBarUsers";
 
 const WorkersList = () => {
     const [workers, setWorkers] = useState([])
-    const {currentUser} = useAuth()
-    const [filter, setFilter]  = useContext(CategoryContext) 
+    const [isDelete, setIsDelete] = useState(false) 
+    const [filter, setFilter]  = useContext(CategoryContext)
+
 
     useEffect(() => {
             let workersCollectionRef = {}  
@@ -27,7 +25,13 @@ const WorkersList = () => {
             setWorkers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
             }
         getWorkers()
-    }, [filter])
+    }, [filter, isDelete])
+
+    const handleDelete = ({uid}) => {
+        db.collection('workers').doc(uid).delete()
+        alert('Usunięto pracownika')
+        setIsDelete(!isDelete)
+    }
 
     return (
         <div>
@@ -48,6 +52,7 @@ const WorkersList = () => {
                                 <h4>{worker.displayName}</h4>
                                 <p>{worker.email}</p>
                                 <p>{worker.phoneNumber}</p>
+                                <button onClick={() => handleDelete(worker)}>Usuń</button>
                             </div>
                         </div>
                     )

@@ -7,25 +7,29 @@ import { useAuth } from "../../context/AuthContext";
 import { CategoryContext} from "../../context/CategoryContext";
 import NavbarBooks from "../Navbar/NavbarBooks";
 import SearchBar from "../Navbar/SearchBar";
-
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Books = (props) => {
     const [books, setBooks] = useState([])
     const { currentUser } = useAuth()
+    const [workers, setWorkers] = useState([])
     const [category, setCategory]  = useContext(CategoryContext)
     const [isAdmin, setIsAdmin] = useState(false)
     const [available, setAvailable] = useState(true)
+    const history = useHistory()
+    const [isWorker, setIsWorker] = useState(false)
+ 
+    const allWorkers = []
 
-    
-    
-
+   
     useEffect(() => {
         if (category === "") {
-             const booksCollectionRef = db.collection('books')
+
+            const booksCollectionRef = db.collection('books')
             const getBooks = async () => {
             const data = await getDocs(booksCollectionRef)
             setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+                
             }
         getBooks()
         } else {
@@ -33,15 +37,33 @@ const Books = (props) => {
             const getBooks = async () => {
             const data = await getDocs(booksCollectionRef)
             setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+
             }
         getBooks()
         }
 
+        const workersCollectionRef = db.collection('workers')
+            const getWorkers = async () => {
+            const data = await getDocs(workersCollectionRef)
+            setWorkers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+            workers.map(worker => {
+                allWorkers.push(worker.email)
+            }) 
+            }
+        getWorkers()
+        
+
         if (currentUser === null) {
              setIsAdmin(false)
-        } else if (currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22") {
+        } else if (currentUser.uid === process.env.REACT_APP_ADMIN_ID) {
             setIsAdmin(true)
+        } else if (currentUser !== null) {
+            workers.map(worker => {
+                allWorkers.push(worker.email)
+            })
+            setIsWorker(allWorkers.includes(currentUser.email))
         }
+        
     }, [category, available])
 
     const addToCart = ({title, author, bookID, image}) => {
@@ -54,8 +76,9 @@ const Books = (props) => {
                 userID: currentUser.uid,
                 userEmail: currentUser.email
             })
+            alert('Dodano do koszyka!')
         } else {
-            alert('MUSISZ BYĆ ZALOGOWANY')
+            alert('Musisz być zalogowany, aby dodać książkę do koszyka')
         }
         
     }
@@ -66,15 +89,16 @@ const Books = (props) => {
             db.collection('books').doc(title).update({
             available: false
              })
-             setAvailable('Niedostępna')
+             setAvailable(!available)
         } else {
            db.collection('books').doc(title).update({
             available: true
              })
-             setAvailable('Dostępna') 
+             setAvailable(!available) 
         }
     }
-    console.log(books)
+            
+
     return (
     <div className="booksLayout">
         <div className="categoryDiv">
@@ -97,14 +121,20 @@ const Books = (props) => {
                             <h4>{book.title}</h4>
                             <h5>{book.author}</h5>
                             <p>{book.category}</p>
-                            {isAdmin ? 
+                            {(isAdmin || isWorker === true) ?
+                            <div> 
                                 <div>
                                     {book.available ?
                                     <button className="optionBtn" onClick={(e) => changeState(book, e)}>Oznacz jako niedostępna</button>
                                     :
                                     <button className="optionBtn" onClick={(e) => changeState(book, e)}>Oznacz jako dostępna</button>
                                     } 
-                                </div> : 
+                                </div>
+                                <div>
+                                    <a className="showMoreButton" href={"/books/"+book.bookID} target="_blank">Pokaż więcej</a>
+                                </div>
+                            </div>
+                                 : 
                                 <div >
                                     {book.available ?
                                     <div className="book-buttons">

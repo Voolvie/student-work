@@ -1,5 +1,4 @@
-import React, {useContext, useState} from "react";
-import { Button, Container, FormControl, Nav, Navbar, NavDropdown, Form } from "react-bootstrap"
+import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
@@ -47,9 +46,13 @@ const NavbarAdmin = () => {
             <div className="dropdown">
                 <button className="dropBtn">Opcje</button>
                 <div className="dropdown-content">
+                    {currentUser.uid !== process.env.REACT_APP_ADMIN_ID &&
+                    <div>
                     <a href="/profile">Mój profil</a>
                     <a href="/update-profile">Aktualizuj profil</a>
-                    {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" &&
+                    </div>
+                    }
+                    {currentUser.uid === process.env.REACT_APP_ADMIN_ID &&
                     <div>
                     <a href="/add-worker">Dodaj pracownika</a>
                     <a href="/users-list">Lista użytkowników</a>

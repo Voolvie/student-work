@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
 import { useAuth } from "../../context/AuthContext";
 import "../style.css"
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import {  arrayUnion  } from "firebase/firestore";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuth } from "../context/AuthContext";
 import NavbarUser from "./Navbar/NavbarUser";
 import NavbarAdmin from "./Navbar/NavbarAdmin" 
@@ -13,7 +13,7 @@ export const Dashboard = (data) => {
     return (
 
         <div >
-            {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" || currentUser.uid ==="7mxeIPKsrIOEOdbakRrR7DsV6bC2" ? <NavbarAdmin /> : <NavbarUser/>}
+            {currentUser.uid === process.env.REACT_APP_ADMIN_ID || currentUser.uid ==="UdSsTduvNONQj4qVarYEuhSQeyJ3" ? <NavbarAdmin /> : <NavbarUser/>}
             <Books />
         </div>
 

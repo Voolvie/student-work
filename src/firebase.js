@@ -2,16 +2,7 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
-import admin from "firebase-admin"
-import serviceAccount from "../src/klemczak-library-firebase-adminsdk-bnonr-9d8533fbfc.json"
-import { getAuth } from "firebase/auth";
 
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-
-});
 
 const config = {
 

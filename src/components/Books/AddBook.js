@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
 import { Card, Container, Form, Button } from "react-bootstrap";
-import app, { db, storage } from "../../firebase";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import app, { db } from "../../firebase";
+import { useHistory, Redirect } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const AddBook = () => {
@@ -69,7 +69,7 @@ const AddBook = () => {
 
     return (
             <div >
-            {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <Redirect to="/" />}
+            {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin /> : <Redirect to="/" />}
             <div className="profilie-content">
                 <div className="singleBook-left"></div>
                 <div className="myBooks-main">
@@ -128,7 +128,7 @@ const AddBook = () => {
                                  <Form.Label>Zdjecie ksiazki</Form.Label>
                                  <Form.Control type="file"  onChange={onFileChange} />
                              </Form.Group>
-                             <Button disabled={loading} className="w-100 " type="submit">Update</Button>
+                             <Button disabled={loading} className="w-100 " type="submit">Dodaj</Button>
                          </Form>
                      </Card.Body>
                  </Card>

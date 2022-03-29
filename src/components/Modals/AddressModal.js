@@ -5,7 +5,6 @@ Modal.setAppElement('#root')
 
  const AddressModal = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    const [fine, setFine] = useState(0)
     const customStyles = {
         content: {
             width: '50%',

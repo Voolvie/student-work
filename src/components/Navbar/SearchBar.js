@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import "../../styles/styles.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import { useAuth } from "../../context/AuthContext";
 
 function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  const { currentUser } = useAuth()
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;

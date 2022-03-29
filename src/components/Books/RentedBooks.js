@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
 import { db} from "../../firebase";
-import { collection, getDocs } from "firebase/firestore"
+import {  getDocs } from "firebase/firestore"
 import { useHistory, Redirect } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
@@ -16,9 +16,6 @@ import { CategoryContext } from "../../context/CategoryContext";
 const RentedBooks = () => {
 
     const { currentUser } = useAuth()
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
-    const history = useHistory()
     const [books, setBooks] = useState([])
     const overDated = []
     const [overDued, setOverDued] = useState(false)
@@ -85,7 +82,7 @@ const RentedBooks = () => {
         })
     }
      const sendNotification = ({userEmail, title}) => {
-        let toSend = ({title: title, userEmail: 'klemczak.szymon@gmail.com'})
+        let toSend = ({title: title, userEmail: userEmail})
         console.log(toSend.title, toSend.userEmail)
         emailjs.send('service_ib3fa88', 'template_usjknsr', toSend, 'dW8jWwzW9an1yK1it')
         .then((result) => {
@@ -96,7 +93,7 @@ const RentedBooks = () => {
      }
     return (
         <div>
-            {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <Redirect to="/" />}
+            {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin /> : <Redirect to="/" />}
         <div className="booksLayout">
             <div className="searchDiv">
             {overDued ?

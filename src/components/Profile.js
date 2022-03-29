@@ -10,6 +10,7 @@ import { getDocs } from "firebase/firestore";
 
 
 export const Profile = () => {
+
     const [myBooks, setMyBooks] = useState([])
     const [error, setError] = useState('')
     const { currentUser, logout } = useAuth()
@@ -35,6 +36,7 @@ export const Profile = () => {
         }
     }
 
+
     useEffect(() => {
             const booksCollectionRef = db.collection('users-books').where("userEmail", "==", currentUser.email)
             const getMyBooks = async () => {
@@ -48,7 +50,7 @@ export const Profile = () => {
 
     return (
     <div >
-        {currentUser.uid === "e3GEp6RMDFfyBZ9BjTfO5TyFaB22" ? <NavbarAdmin /> : <NavbarUser/>}
+        {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin /> : <NavbarUser/>}
         <div className="profilie-content">
             <div className="singleBook-left"></div>
             <div className="myBooks-main">
@@ -56,11 +58,11 @@ export const Profile = () => {
             <div className="w-100" style={{ maxWidth: "400px"}}>
                 <Card>
                     <Card.Body>
-                        <h2 className="text-center mb-4" >Profile</h2>
+                        <h2 className="text-center mb-4" >Profil</h2>
                         {error && <Alert variant="danger">{error} </Alert>}
-                        <div><strong>Username:</strong>{currentUser.displayName}</div>
+                        <div><strong>Nazwa użytkownika:</strong>{currentUser.displayName}</div>
                         <div><strong>Email:</strong>{currentUser.email}</div>
-                        <Link to='/update-profile' className="btn btn-primary w-100 mt-3">Update profile</Link>
+                        <Link to='/update-profile' className="btn btn-primary w-100 mt-3">Aktualizuj profil</Link>
                     </Card.Body>
                     
                 </Card>

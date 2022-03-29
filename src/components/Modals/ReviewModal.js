@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal"
 import { Form, Button } from "react-bootstrap";
 import { db } from "../../firebase";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { arrayUnion } from "firebase/firestore";
 import { useAuth } from "../../context/AuthContext";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 Modal.setAppElement('#root')
 

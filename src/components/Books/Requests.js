@@ -98,6 +98,7 @@ const Requests = () => {
                             <p>{book.dane.name} {book.dane.surname}, {book.dane.street}, {book.dane.postcode} {book.dane.city}</p>
                             <p>Start wypożycznia: {book.dane.startDate}</p>
                             <p>Koniec wypożyczenia: {book.dane.endDate}</p>
+                            <p>Opłata: {((book.dane.fineAfter - 14) * 0.1) + 5} zł</p>
                             <button className="optionBtn" onClick={() => rentBook(i)}>Wypożycz użytkownikowi</button>
                             <button className="optionBtn" onClick={() => dontRent(book)}>Nie wypożyczaj</button>
                         </div>

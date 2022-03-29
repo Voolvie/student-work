@@ -10,7 +10,6 @@ import moment from "moment";
 const MyBooks = () => {
     const [myBooks, setMyBooks] = useState([])
     const {currentUser} = useAuth()
-    const [total2, setTotal2] = useState([])
     const total = []
 
     const today = new Date()
@@ -37,16 +36,13 @@ const MyBooks = () => {
             const sum = total.reduce((partialSum, a) => partialSum + a, 0)
 
 
-    const returnBook = ({image, title, userEmail, address, name, surname, phoneNumber}, fine) => {
+    const returnBook = ({image, title, userEmail, address}, fine) => {
         db.collection('return').doc(userEmail + ' ' + title).set({
            address,
            image,
            title,
            fine,
            userEmail,
-           name,
-           surname,
-           phoneNumber
        }).then(() => {
            alert('Przesłano prośbę o oddanie')
        })
@@ -59,10 +55,15 @@ const MyBooks = () => {
                     <div className="singleBook-left">
 
                     </div>
-                    <div className="myBooks-main">
-                     <div className="fine">
-                    <h1 className="color-white">Kara: {sum.toFixed(2)}</h1>
-                     </div>
+                    {myBooks.length === 0 ? 
+                        <div className="myBooks-main">
+                            <h1>Brak wypożyczonych książek</h1>
+                        </div>
+                        :
+                        <div className="myBooks-main">
+                        {sum !== 0 && <div className="fine">
+                        <h1 className="color-white">Kara: {sum.toFixed(2)} zł</h1>
+                        </div> }
                      <div className="singleBook-main-main">
                     {
                         myBooks.map((book, i) => {
@@ -86,6 +87,8 @@ const MyBooks = () => {
                         })}
                      </div>
                     </div>
+                        }
+                    
                     
                     <div className="singleBook-right">
                     </div>
