@@ -34,7 +34,7 @@ const App = () => {
           <AuthProvider>
             <CategoryProvider>
               <Switch>
-                <PrivateRoute exact path='/' component={Dashboard}/>
+                <PrivateRoute exact path='/m' component={Dashboard}/>
                 <PrivateRoute path='/profile'component={Profile}/>
                 <PrivateRoute path='/update-profile' component={UpdateProfile}/>
                 <PrivateRoute path='/profile-worker'component={ProfileWorker}/>
