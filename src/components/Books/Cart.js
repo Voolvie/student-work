@@ -168,7 +168,7 @@ const Cart = () => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Telefon</Form.Label>
-                            <Form.Control type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} required/>
+                            <Form.Control type="tel" pattern="[0-9]{9}" placeholder="Telefon" onChange={(e) => setPhoneNumber(e.target.value)} required/>
                         </Form.Group>
                         </div>
                         <div className="rent2">

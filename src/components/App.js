@@ -24,6 +24,8 @@ import Deleted from "./Books/Deleted";
 import AddWorker from "./Auth/AddWorker";
 import UsersList from "./Books/UsersList";
 import WorkersList from "./Books/WorkersList";
+import ProfileWorker from "./ProfileWorker";
+import UpdateProfileWorker from "./UpdateProfileWorker";
 
 const App = () => {
   return (
@@ -35,6 +37,8 @@ const App = () => {
                 <PrivateRoute exact path='/' component={Dashboard}/>
                 <PrivateRoute path='/profile'component={Profile}/>
                 <PrivateRoute path='/update-profile' component={UpdateProfile}/>
+                <PrivateRoute path='/profile-worker'component={ProfileWorker}/>
+                <PrivateRoute path='/update-profile-worker' component={UpdateProfileWorker}/>
                 <PrivateRoute path='/add-book' component={AddBook} />
                 <PrivateRoute path='/cart' component={Cart} />
                 <PrivateRoute path='/my-books' component={MyBooks} />

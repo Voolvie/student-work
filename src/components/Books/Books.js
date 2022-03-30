@@ -75,8 +75,10 @@ const Books = (props) => {
                 bookID: bookID,
                 userID: currentUser.uid,
                 userEmail: currentUser.email
+            }).then(() => {
+                alert('Dodano do koszyka!')
             })
-            alert('Dodano do koszyka!')
+            
         } else {
             alert('Musisz być zalogowany, aby dodać książkę do koszyka')
         }

@@ -48,8 +48,8 @@ const NavbarAdmin = () => {
                 <div className="dropdown-content">
                     {currentUser.uid !== process.env.REACT_APP_ADMIN_ID &&
                     <div>
-                    <a href="/profile">Mój profil</a>
-                    <a href="/update-profile">Aktualizuj profil</a>
+                    <a href="/profile-worker">Mój profil</a>
+                    <a href="/update-profile-worker">Aktualizuj profil</a>
                     </div>
                     }
                     {currentUser.uid === process.env.REACT_APP_ADMIN_ID &&

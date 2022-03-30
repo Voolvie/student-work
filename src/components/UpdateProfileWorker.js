@@ -8,7 +8,7 @@ import NavbarAdmin from "./Navbar/NavbarAdmin";
 
 
 
-const UpdateProfile = () => {
+const UpdateProfileWorker = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
@@ -56,7 +56,7 @@ const UpdateProfile = () => {
     return (
         <div >
 
-        {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin /> : <NavbarUser />}
+        <NavbarAdmin />
         <div className="profilie-content">
             <div className="singleBook-left"></div>
             <div className="myBooks-main">
@@ -98,4 +98,4 @@ const UpdateProfile = () => {
         </div>
     )
 }
-export default UpdateProfile
+export default UpdateProfileWorker

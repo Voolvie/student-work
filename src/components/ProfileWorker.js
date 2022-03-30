@@ -9,7 +9,7 @@ import { db } from "../firebase";
 import { getDocs } from "firebase/firestore";
 
 
-export const Profile = () => {
+export const ProfileWorker = () => {
 
     const [myBooks, setMyBooks] = useState([])
     const [error, setError] = useState('')
@@ -41,7 +41,7 @@ export const Profile = () => {
 
     return (
     <div >
-        {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin /> : <NavbarUser/>}
+        <NavbarAdmin />
         <div className="profilie-content">
             <div className="singleBook-left"></div>
             <div className="myBooks-main">
@@ -53,7 +53,7 @@ export const Profile = () => {
                         {error && <Alert variant="danger">{error} </Alert>}
                         <div><strong>Nazwa użytkownika:</strong>{currentUser.displayName}</div>
                         <div><strong>Email:</strong>{currentUser.email}</div>
-                        <Link to='/update-profile' className="btn btn-primary w-100 mt-3">Aktualizuj profil</Link>
+                        <Link to='/update-profile-worker' className="btn btn-primary w-100 mt-3">Aktualizuj profil</Link>
                     </Card.Body>
                     
                 </Card>
@@ -67,4 +67,4 @@ export const Profile = () => {
     )
 }
 
-export default Profile
+export default ProfileWorker

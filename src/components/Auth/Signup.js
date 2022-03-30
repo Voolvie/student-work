@@ -27,7 +27,7 @@ export default function Signup() {
       setLoading(true)
       const res = await signup(email, password)
       const user = res.user
-      await user.updateProfile({displayName: displayName})
+      await user.updateProfile({displayName: displayName, phoneNumber: phoneNumber})
       .then(() => {
         db.collection('users').doc(user.uid).set({
         uid: user.uid,
@@ -58,6 +58,10 @@ export default function Signup() {
             <Form.Group id="text">
               <Form.Label>Nazwa użytkownika</Form.Label>
               <Form.Control type="text" onChange={(e) => setDisplayName(e.target.value)} required/>
+            </Form.Group>
+            <Form.Group id="text">
+              <Form.Label>Numer telefonu</Form.Label>
+              <Form.Control type="tel" pattern="[0-9]{9}" onChange={(e) => setPhoneNumber(e.target.value)} required/>
             </Form.Group>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
