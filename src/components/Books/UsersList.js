@@ -44,7 +44,7 @@ const UsersList = () => {
                 <SearchBarUsers data={users}/>
             </div>
              </div>
-                <div className="rentedLayout">
+                <div className="usersLayout">
                 {
                 users.map((user) => {
                     return (               
@@ -52,7 +52,7 @@ const UsersList = () => {
                             <div>
                                 <h4>{user.displayName}</h4>
                                 <p>{user.email}</p>
-                                <p>{user.phoneNumber}</p>
+                                <p>Numer: {user.phoneNumber}</p>
                                 <button onClick={() => handleDelete(user)}>Usuń</button>
                             </div>
                         </div>

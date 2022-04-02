@@ -11,10 +11,22 @@
     justify-content: space-between;
     align-items: center;
     .links {
+    @media only screen and (max-width: 1000px) {
+        margin: 30px;
+}   
+     @media only screen and (max-width: 756px) {
+        margin: 10px;
+} 
         display: flex;
         margin: 50px;
     }
     .links-cart {
+      @media only screen and (max-width: 1000px) {
+        margin: 30px;
+}   
+     @media only screen and (max-width: 756px) {
+        margin: 10px;
+} 
         margin: 50px;
         a {
             margin: 30px
@@ -22,10 +34,13 @@
     }
     a {
         color: rgb(232, 232, 232);
-        font-size: 25px;
+        font-size: clamp(0.5rem, 1.5vw, 1.5rem);
         text-decoration: none;
         font-family: Arial, Helvetica, sans-serif;
         margin: 20px;
+    }
+    h1 {
+      font-size: clamp(1rem, 2.5vw, 2rem);
     }
     box-shadow: inset 0 0 2em black, 0 0 1em black;
 }
@@ -34,10 +49,11 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  color: white;
   
   .dropBtn {
   margin: 20px;
-  font-size: 25px;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   font-family: Arial, Helvetica, sans-serif;
   border: none ;
   background: none;
@@ -55,7 +71,7 @@
     }
      a {
         color: rgb(232, 232, 232);
-        font-size: 20px;
+        font-size: clamp(0.5rem, 1.5vw, 1.5rem);
         font-family: Arial, Helvetica, sans-serif;
         margin: 5px;
         color: black;
@@ -70,7 +86,7 @@
 }
 
 .logoutBtn {
-  font-size: 25px;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: rgb(232, 232, 232);
   border: none;
   background: none;

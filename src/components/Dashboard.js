@@ -12,7 +12,7 @@ export const Dashboard = (data) => {
 
     return (
 
-        <div >
+        <div className="navbarMenu">
             {currentUser.uid === process.env.REACT_APP_ADMIN_ID || currentUser.uid ==="UdSsTduvNONQj4qVarYEuhSQeyJ3" ? <NavbarAdmin /> : <NavbarUser/>}
             <Books />
         </div>

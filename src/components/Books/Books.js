@@ -117,7 +117,7 @@ const Books = (props) => {
                 return (
                     <div key={book.id} className="book">
                         <div>
-                            <img width="140" height="160" src={book.image} alt={book.title} />
+                            <img src={book.image} alt={book.title} />
                         </div>
                         <div>
                             <h4>{book.title}</h4>

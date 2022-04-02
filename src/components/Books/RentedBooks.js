@@ -1,4 +1,3 @@
-//Wypozyczone ksiazki
 import React, { useContext, useEffect, useState } from "react";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
 import { db} from "../../firebase";
@@ -94,7 +93,7 @@ const RentedBooks = () => {
     return (
         <div>
             {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin /> : <Redirect to="/" />}
-        <div className="booksLayout">
+        <div className="rentedLayout">
             <div className="searchDiv">
             {overDued ?
             <div className="overdueBtn"><button className="overdueBtnStyle" onClick={testClick}>Pokaż wszystko</button></div> 
@@ -107,13 +106,13 @@ const RentedBooks = () => {
             </div>
              </div>
             
-            <div className="rentedLayout">
+            <div className="renteds">
                 {books.map((book) => {
                     const dni = moment(book.endDate).diff(todayDate, 'days')
                     const fine = (dni*-1)*0.1
                     return (
                         <div key={book.id} className="rentedBook">
-                            <div><img width="140" height="150" src={book.image} alt={book.title} /></div>
+                            <div><img  src={book.image} alt={book.title} /></div>
                             <div>
                                 <h4>{book.title}</h4>
                                 <h5>{book.userEmail}</h5>

@@ -43,7 +43,7 @@ const WorkersList = () => {
                 <SearchBarUsers data={workers}/>
             </div>
              </div>
-                <div className="rentedLayout">
+                <div className="usersLayout">
                 {
                 workers.map((worker) => {
                     return (               

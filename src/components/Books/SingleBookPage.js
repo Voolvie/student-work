@@ -121,7 +121,6 @@ const SingleBookPage = (props) => {
                 })}
                     </div>
                     <div className="singleBook-right">
-
                     </div>
 
                  </div>

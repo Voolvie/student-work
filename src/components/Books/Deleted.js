@@ -73,11 +73,11 @@ const Deleted = () => {
                         <div key={book.id} className="request">
                             <div>
                                 <h3>Od usunięcia: {dni}</h3>
-                                <img width="140" height="150" src={book.image} alt={book.title} />
+                                <img  src={book.image} alt={book.title} />
                             </div>
                             <div>
-                                <h3>{book.title}</h3>
-                                <h2>{book.userEmail}</h2>
+                                <h4>{book.title}</h4>
+                                <h5>{book.userEmail}</h5>
                                 <p>Od: {book.startDate}</p>
                                 <p>Do: {book.endDate}</p>
                                 <AddressModal book={book}/>

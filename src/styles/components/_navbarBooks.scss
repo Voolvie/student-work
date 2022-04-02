@@ -6,16 +6,15 @@
     padding-left: 10px;
     margin: 10px;
     width: 25%;
-    height: 100vh;
+    height: 100%;
     display: block;
-
     h5 {
-        font-size: 25px;;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
     }
 }
 .dropdown-toggle.btn.btn-primary {
-    font-size: 20px;
-    width: 250px;
+   font-size: clamp(1rem, 2.5vw, 1.5rem);
+    width: 100%;
     background-color: black;
     border-color: black;
 }

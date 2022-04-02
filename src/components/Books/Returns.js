@@ -1,7 +1,6 @@
 import React , {useState, useEffect} from "react";
 import { db } from "../../firebase";
 import { getDocs } from "firebase/firestore"
-import { useAuth } from "../../context/AuthContext";
 import "../style.css"
 import AddressModal from "../Modals/AddressModal";
 import NavbarAdmin from "../Navbar/NavbarAdmin";
