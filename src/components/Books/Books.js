@@ -7,7 +7,6 @@ import { useAuth } from "../../context/AuthContext";
 import { CategoryContext} from "../../context/CategoryContext";
 import NavbarBooks from "../Navbar/NavbarBooks";
 import SearchBar from "../Navbar/SearchBar";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Books = (props) => {
     const [books, setBooks] = useState([])
@@ -16,10 +15,7 @@ const Books = (props) => {
     const [category, setCategory]  = useContext(CategoryContext)
     const [isAdmin, setIsAdmin] = useState(false)
     const [available, setAvailable] = useState(true)
-    const history = useHistory()
-    const [isWorker, setIsWorker] = useState(false)
- 
-    const allWorkers = []
+
 
    
     useEffect(() => {
@@ -42,28 +38,22 @@ const Books = (props) => {
         getBooks()
         }
 
-        const workersCollectionRef = db.collection('workers')
+        if (currentUser !==null) {
+            const workersCollectionRef = db.collection('workers').where("uid", "==", currentUser.uid)
             const getWorkers = async () => {
             const data = await getDocs(workersCollectionRef)
             setWorkers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
-            workers.map(worker => {
-                allWorkers.push(worker.email)
-            }) 
             }
         getWorkers()
+            }
         
 
         if (currentUser === null) {
              setIsAdmin(false)
         } else if (currentUser.uid === process.env.REACT_APP_ADMIN_ID) {
             setIsAdmin(true)
-        } else if (currentUser !== null) {
-            workers.map(worker => {
-                allWorkers.push(worker.email)
-            })
-            setIsWorker(allWorkers.includes(currentUser.email))
-        }
-        
+        } 
+
     }, [category, available])
 
     const addToCart = ({title, author, bookID, image}) => {
@@ -123,7 +113,7 @@ const Books = (props) => {
                             <h4>{book.title}</h4>
                             <h5>{book.author}</h5>
                             <p>{book.category}</p>
-                            {(isAdmin || isWorker === true) ?
+                            {(isAdmin || (workers.length > 0) === true) ?
                             <div> 
                                 <div>
                                     {book.available ?
