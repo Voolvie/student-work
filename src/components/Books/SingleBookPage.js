@@ -14,6 +14,7 @@ const SingleBookPage = (props) => {
     const {currentUser} = useAuth()
     const history = useHistory()
     const [isDelete, setIsDelete] = useState(false)
+    const [workers, setWorkers] = useState([])
 
     useEffect(() => {
             const booksCollectionRef = db.collection('books').where("bookID", "==", props.match.params.id)
@@ -22,6 +23,16 @@ const SingleBookPage = (props) => {
             setMyBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
             }
         getMyBooks()
+            if (currentUser !==null) {
+            const workersCollectionRef = db.collection('workers').where("uid", "==", currentUser.uid)
+            const getWorkers = async () => {
+            const data = await getDocs(workersCollectionRef)
+            setWorkers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})))
+            }
+        getWorkers()
+            }
+        
+
     }, [isDelete])
 
         const addToCart = ({title, author, bookID, image}) => {
@@ -51,16 +62,16 @@ const SingleBookPage = (props) => {
     alert("Usunięto recenjzę")
     setIsDelete(!isDelete)
     }
-    console.log(currentUser)
+console.log(workers.length)
     return (
         <div>
             {
-                currentUser === null ? <NavbarMain />
+                (currentUser === null ) ? <NavbarMain />
                 :
                 <div>
-                {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin/>
+                {(currentUser !== null && currentUser.uid !== process.env.REACT_APP_ADMIN_ID && (workers.length === 0)) ? <NavbarUser/>
                         :
-                        <NavbarUser/>
+                        <NavbarAdmin/>
                 }
                 </div>
             }
@@ -82,11 +93,20 @@ const SingleBookPage = (props) => {
                                 <h4>{book.title}</h4>
                                 <h5>{book.author}</h5>
                                 <p>{book.category}</p>
-                                {book.available ? 
-                                <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>                
+                                {book.available ?
+                                 <div>
+                                    {
+                                        (currentUser === null || (currentUser.uid !== process.env.REACT_APP_ADMIN_ID && (workers.length === 0))) &&
+                                        <button className="cartButton" onClick={(e) => addToCart(book, e)}>Dodaj do koszyka</button>  
+                                    }    
+                                </div>             
                                 :
                                 <div>
-                                    <button className="optionBtn" onClick={(e) => deleteBook(book)}>Usuń</button>
+                                    {
+                                        (currentUser !== null && (currentUser.uid === process.env.REACT_APP_ADMIN_ID || (workers.length > 0))) &&
+                                        <button className="optionBtn" onClick={(e) => deleteBook(book)}>Usuń</button>
+                                    }
+                                    
                                 </div>
                                 }
                                 
