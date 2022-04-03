@@ -51,16 +51,16 @@ const SingleBookPage = (props) => {
     alert("Usunięto recenjzę")
     setIsDelete(!isDelete)
     }
-    
+    console.log(currentUser)
     return (
         <div>
             {
-                (currentUser.uid === process.env.REACT_APP_ADMIN_ID) ? <NavbarAdmin />
+                currentUser === null ? <NavbarMain />
                 :
                 <div>
-                {currentUser !== null ? <NavbarUser/>
+                {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? <NavbarAdmin/>
                         :
-                        <NavbarMain/>
+                        <NavbarUser/>
                 }
                 </div>
             }
@@ -102,7 +102,7 @@ const SingleBookPage = (props) => {
                                 return <div className="singleBook-review" >
                                     <p>{review}</p>
                                     {
-                                        currentUser.uid === process.env.REACT_APP_ADMIN_ID &&
+                                        (currentUser !== null && currentUser.uid === process.env.REACT_APP_ADMIN_ID) &&
                                         <button onClick={(e) => deleteReview(book ,i)}>Usuń</button>
                                     }
                                 </div>
